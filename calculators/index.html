@@ -32,7 +32,22 @@
 
     <script type="text/javascript" src="interface.js"></script>
     <script type="text/javascript">
-      // Your code goes here!
-    </script>
+    function calcLongestSide(a,b) {
+      longside=Math.sqrt((a*a) + (b*b));
+      return longside;
+    }
+    function calcCircumference(radius) {
+      circum=2*Math.PI*radius;
+      return circum;
+    }
+    function calcFahrenheitToCelcius(fahrenheit) {
+      celcius=(fahrenheit-32)*5/9;
+      return celcius;
+    }
+    function calcCelciusToFarenheit(celcius) {
+      fahrenheit=celcius*(9/5)+32;
+      return fahrenheit;
+      }
+        </script>
   </body>
 </html>
