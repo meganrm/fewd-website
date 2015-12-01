@@ -6,12 +6,17 @@
     <link rel="stylesheet" href="stylesheet.css" media="screen">
   </head>
   <body>
+    <section>
+
     <h1>Fahrenheit to Celcius</h1>
 
     <div class="panel temp">
       <input type="text" class="temp-f" placeholder="℉">⇄
       <input type="text" class="temp-c" placeholder="℃">
     </div>
+  </section>
+
+<section class=radiuscircle>
 
     <h1>Radius to Circumference</h1>
 
@@ -21,6 +26,9 @@
       <input type="text" class="circum-r" placeholder="radius">
       <input type="text" class="circum-c" placeholder="circumference" disabled>
     </div>
+  </section>
+
+<section>
 
     <h1>Pythagorean Theorem</h1>
 
@@ -30,22 +38,24 @@
       <input type="text" class="py-c" placeholder="C" disabled>
     </div>
 
+  </section>
+
     <script type="text/javascript" src="interface.js"></script>
     <script type="text/javascript">
     function calcLongestSide(a,b) {
-      longside=Math.sqrt((a*a) + (b*b));
+      var longside=Math.sqrt((a*a) + (b*b));
       return longside;
     }
     function calcCircumference(radius) {
-      circum=2*Math.PI*radius;
+      var circum=2*Math.PI*radius;
       return circum;
     }
     function calcFahrenheitToCelcius(fahrenheit) {
-      celcius=(fahrenheit-32)*5/9;
+      var celcius=(fahrenheit-32)*5/9;
       return celcius;
     }
     function calcCelciusToFarenheit(celcius) {
-      fahrenheit=celcius*(9/5)+32;
+      var fahrenheit=celcius*(9/5)+32;
       return fahrenheit;
       }
         </script>
