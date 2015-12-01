@@ -20,6 +20,23 @@
     var miles = quarter + half;
     return miles ;
   }
+function calcTurkeyCookTime(size, stuffed) {
+ if (stuffed){
+  var cooktime= size*19+124;
+  }
+  else{
 
-  
+  }
+  return cooktime;
+}
+
+  function pesoToDollar(peso) {
+    return (0.06*peso)
+  }
+function addParagraph(text){
+    var p = document.createElement('p') ;
+    p.textContent=text;
+    var parent = document.querySelector('section');
+    parent.appendChild(p)
+  }
 </script>
