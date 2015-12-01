@@ -5,37 +5,52 @@
     <title></title>
     <style media="screen">
       .form-row{
-        display: block;
         margin: 10px;
       }
+      .form{
+        width: 300px;
+        background-color: gray;
+        margin: auto;
+        padding: 20px;
+      }
+      label span{
+        display:inline-block;
+        width: 100px;
+      }
+
+
     </style>
   </head>
   <body>
+    <div class="form">
+
+    <form class="" action="index.html" method="post">
+
   <div class="form-row">
     <label for="">
-      Name:
-        <input type="text" name="name" value="">
+      <span>Name:</span>
+        <input type="text" id="name" value="">
       </label>
   </div>
 
   <div class="form-row">
     <label for="">
-      Email:
-      <input type="email" name="email" value="">
+      <span> Email:</span>
+      <input type="email" id="email" value="">
     </label>
   </div>
 
     <div class="form-row">
     <label for="">
-      Phone:
-      <input type="text" name="phone" value="">
+      <span>Phone:</span>
+      <input type="text" id="phone" value="">
     </label>
   </div>
 
     <div class="form-row">
     <label for="">
-      Job:
-      <select class="" name="">
+      <span>Job:</span>
+      <select class="Jobs" id="jobs">
         <option value="job1">Designer</option>
         <option value="job2">Other</option>
       </select>
@@ -54,6 +69,8 @@
       <input type="submit" id="submit" value="Save">
     </label>
   </div>
+</form>
+</div>
 
   </body>
 </html>
