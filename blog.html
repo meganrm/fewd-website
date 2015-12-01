@@ -106,9 +106,10 @@
     <script>
       var link = document.querySelector(".like-link");
       var form = document.querySelector("#new-comment");
+      var comments = document.querySelector("#comments");
 
       link.addEventListener("click", like);
-      form.addEventListener("submit", comment);
+      form.addEventListener("submit", createNewComment);
 
       function like(event) {
         event.preventDefault();
@@ -118,10 +119,18 @@
         likeSpan.textContent=newCount;
         // Your code for like goes here
       }
+      function newTagText(tagType, elementName, parent, text){
+        var elementName=document.createElement(tagType);
+        parent.appendChild(elementName);
+        elementName.textContent=text;
+        return elementName;
+      }
 
-      function comment(event) {
+      function createNewComment(event) {
         event.preventDefault();
-
+        var newComment= document.querySelector("#new-comment-body");
+        var newCommentText = newComment.value;
+        var comment= newTagText("p", comment, comments, newCommentText);
         // Your code for comments goes here
       }
     </script>
