@@ -87,6 +87,8 @@
       <div class="like">
         <a href="#" class="like-link">Like</a>
         (<span class="like-count">0</span>)
+        <a href="#" class="like-reset">Reset</a>
+
       </div>
 
       <div id="comments">
@@ -107,10 +109,14 @@
     </script>
     <script>
       var link = document.querySelector(".like-link");
+      var reset = document.querySelector(".like-reset");
+
       var form = document.querySelector("#new-comment");
       var comments = document.querySelector("#comments");
 
       link.addEventListener("click", like);
+      reset.addEventListener("click", resetLike);
+
       form.addEventListener("submit", createNewComment);
 
       function like(event) {
@@ -120,6 +126,13 @@
         var newCount=1+likeCount;
         likeSpan.textContent=newCount;
         // Your code for like goes here
+      }
+      function resetLike(event){
+        event.preventDefault();
+
+        var likeSpan= document.querySelector(".like-count");
+        likeSpan.textContent='0';
+
       }
       // function newTagText(tagType, elementName, parent, text){
       //   var elementName=document.createElement(tagType);
