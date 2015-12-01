@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Megan</title>
+    <title>Megan Riel-Mehan</title>
     <style media="screen">
 
     a{
@@ -22,16 +22,17 @@
       margin: 0;
       font-size: 18px;
       color: white ;
-      text-align: center;
       background-color: gray;
     }
 
     header{
+      text-align: center;
 
     }
     .banner{
       background: url(images/dna_msms.jpg)  no-repeat  bottom;
       background-size: cover;
+      height: 20em;
     }
 
     .sticky {
@@ -43,7 +44,7 @@
 
     .menu{
       background-color: coral;
-
+      padding: 20px;
     }
     .headline{
       font-family: "Gill Sans", "Arial";
@@ -54,12 +55,14 @@
     }
 
     img{
-      border-radius: 200px;
-      margin: 20px;
+      border-radius: 100px;
+      margin: 100px;
+      width: 200px;
+      border: 2px solid;
     }
 
     main{
-      width: 80%;
+      width: 70%;
       margin: auto;
 
 
@@ -159,11 +162,11 @@ placeholder.style.height = menuPosition.height + 'px';
 var isAdded = false;
 
 window.addEventListener('scroll', function() {
-  if ((window.pageYOffset)>= 225 && !isAdded) {
+  if ((window.pageYOffset)>= 373 && !isAdded) {
       menu.classList.add('sticky');
       menu.parentNode.insertBefore(placeholder, menu);
       isAdded = true;
-  } else if ((window.pageYOffset) < 225 && isAdded) {
+  } else if ((window.pageYOffset) < 373 && isAdded) {
       menu.classList.remove('sticky');
       menu.parentNode.removeChild(placeholder);
       isAdded = false;
