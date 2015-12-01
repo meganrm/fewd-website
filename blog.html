@@ -102,7 +102,7 @@
         <button type="submit">Comment</button>
       </form>
     </main>
-    <script type="text/javascript" src='DOMfuctions.js'>
+    <script type="text/javascript" src='DOMfunctions.js'>
 
     </script>
     <script>
@@ -121,12 +121,12 @@
         likeSpan.textContent=newCount;
         // Your code for like goes here
       }
-      function newTagText(tagType, elementName, parent, text){
-        var elementName=document.createElement(tagType);
-        parent.appendChild(elementName);
-        elementName.textContent=text;
-        return elementName;
-      }
+      // function newTagText(tagType, elementName, parent, text){
+      //   var elementName=document.createElement(tagType);
+      //   parent.appendChild(elementName);
+      //   elementName.textContent=text;
+      //   return elementName;
+      // }
 
       function createNewComment(event) {
         event.preventDefault();
