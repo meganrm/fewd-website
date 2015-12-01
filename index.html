@@ -5,16 +5,34 @@
     <title>Megan</title>
     <style media="screen">
     body{
+      margin-top: 0;
       font-size: 18px;
-      width: 80%;
       margin-left: auto;
       margin-right: auto;
-      background: url(images/dna_msms.jpg);
       color: white ;
       background-size: cover;
       background-repeat: no-repeat;
       text-align: center;
+      background-color: gray;
+    }
+    header{
+      background: url(images/dna_msms.jpg)  no-repeat  bottom;
+      width: 100%;
+      background-size: cover;
 
+    }
+    main{
+      width: 80%;
+      margin: auto;
+
+
+    }
+    section{
+      width: 50%;
+      float: left;
+    }
+    .intro{
+      border-bottom: 2px solid;
     }
     h1{
       font-family: "Gill Sans", "Arial";
@@ -24,10 +42,11 @@
       font-size: 3em;
       padding-top: .2em;
       padding-bottom: .2em;
+      background-color: coral;
 
     }
     img{
-      border-radius: 100px;
+      border-radius: 200px;
       margin: 20px;
     }
     p{
@@ -56,12 +75,18 @@
 
   </head>
   <body>
+    <header>
+
+
     <img src="images/megan.png" alt="Megan Riel-Mehan" />
 
     <h1>Megan Riel-Mehan</h1>
+    </header>
+    <main>
+    <div class="intro">
+
     <p>I work at UCSF as a postdoc in scientific visualization. <a href="http://www.mesoscope.org/" target="_blank">Our lab</a> does a variety of types of projects ranging from more editorial art to data viz. In my free time I work as a Dive Master at Bamboo Reef, which means I'm in Monterey a lot. Here are some other things I enjoy doing:
     </p>
-
     <ul>
       <li>Playing with my dog</li>
       <li>I paint something (usually someone) everyday</li>
@@ -69,6 +94,9 @@
       <li>Meeting up with friends at The Willows (my favorite bar)</li>
 
     </ul>
+  </div>
+
+    <section class='homework'>
 
     <p>  Homework submissions  </p>
       <ul>
@@ -78,6 +106,9 @@
         <li><a href="blog.html">Blog with Like button and Comments</a></li>
 
       </ul>
+    </section>
+<section class='in-class'>
+
     <p>
       In-Class Exercises
     </p>
@@ -88,5 +119,8 @@
       <li><a href="form.html">Form</a>Using form html tag, and input tags to make a form. Also learned about inline-block.</li>
 
     </ul>
+  </section>
+
+  </main>
   </body>
 </html>
