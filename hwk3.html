@@ -106,14 +106,14 @@ var body = document.querySelector("body");
     }
     return elementName;
   }
-  function newImage(elementName, parent, src, height, width){
-    var elementName=document.createElement("img");
-    parent.appendChild(elementName);
-    elementName.setAttribute("src", src);
-    elementName.setAttribute("height", height);
-    elementName.setAttribute("width", width);
-    return elementName;
-  }
+  // function newImage(elementName, parent, src, height, width){
+  //   var elementName=document.createElement("img");
+  //   parent.appendChild(elementName);
+  //   elementName.setAttribute("src", src);
+  //   elementName.setAttribute("height", height);
+  //   elementName.setAttribute("width", width);
+  //   return elementName;
+  // }
 
 var header = newTagText("header", header, body);
 var logo = newTagText("img", logo, header, 'text', "http://f.cl.ly/items/05361u3R0D3i1c2y2203/acme-corp.jpg", "52px", "200px");
