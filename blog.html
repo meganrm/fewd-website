@@ -112,7 +112,10 @@
 
       function like(event) {
         event.preventDefault();
-
+        var likeSpan= document.querySelector(".like-count");
+        var likeCount= Number(likeSpan.textContent);
+        var newCount=1+likeCount;
+        likeSpan.textContent=newCount;
         // Your code for like goes here
       }
 
