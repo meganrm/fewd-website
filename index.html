@@ -4,23 +4,60 @@
     <meta charset="utf-8">
     <title>Megan</title>
     <style media="screen">
+
+    a{
+      color: lightblue;
+      text-decoration: none;
+    }
+    a:hover{
+      color:coral;
+    }
+    p{
+      font-family: "Verdana";
+      color: white;
+      font-weight: lighter;
+      text-align: left;
+    }
     body{
-      margin-top: 0;
+      margin: 0;
       font-size: 18px;
-      margin-left: auto;
-      margin-right: auto;
       color: white ;
-      background-size: cover;
-      background-repeat: no-repeat;
       text-align: center;
       background-color: gray;
     }
+
     header{
-      background: url(images/dna_msms.jpg)  no-repeat  bottom;
-      width: 100%;
-      background-size: cover;
 
     }
+    .banner{
+      background: url(images/dna_msms.jpg)  no-repeat  bottom;
+      background-size: cover;
+    }
+
+    .sticky {
+        position: fixed;
+        top:0;
+        left: 0;
+        right: 0;
+    }
+
+    .menu{
+      background-color: coral;
+
+    }
+    .headline{
+      font-family: "Gill Sans", "Arial";
+      font-weight: lighter;
+      text-transform: uppercase;
+      color: white ;
+      font-size: 3em;
+    }
+
+    img{
+      border-radius: 200px;
+      margin: 20px;
+    }
+
     main{
       width: 80%;
       margin: auto;
@@ -31,41 +68,17 @@
       width: 50%;
       float: left;
     }
+
     .intro{
       border-bottom: 2px solid;
     }
-    h1{
-      font-family: "Gill Sans", "Arial";
-      font-weight: lighter;
-      text-transform: uppercase;
-      color: white ;
-      font-size: 3em;
-      padding-top: .2em;
-      padding-bottom: .2em;
-      background-color: coral;
 
-    }
-    img{
-      border-radius: 200px;
-      margin: 20px;
-    }
-    p{
-      font-family: "Verdana";
-      color: white;
-      font-weight: lighter;
-      text-align: left;
-    }
+
+
     ul{
       margin-left: 10px;
       text-align: left;
 
-    }
-    a{
-      color: lightblue;
-      text-decoration: none;
-    }
-    a:hover{
-      color:coral;
     }
 
     .inclass li{
@@ -89,12 +102,16 @@
   </head>
   <body>
     <header>
+      <div class="banner">
 
 
-    <img src="images/megan.png" alt="Megan Riel-Mehan" />
-
-    <h1>Megan Riel-Mehan</h1>
+      <img src="images/megan.png" alt="Megan Riel-Mehan" />
+          </div>
+      <div class="menu">
+        <div class="headline">Megan Riel-Mehan</div>
+      </div>
     </header>
+
     <main>
     <div class="intro">
 
@@ -135,5 +152,25 @@
   </section>
 
   </main>
+  <script type="text/javascript">
+  var menu = document.querySelector('.menu');
+var menuPosition = menu.getBoundingClientRect();
+var placeholder = document.createElement('div');
+placeholder.style.width = menuPosition.width + 'px';
+placeholder.style.height = menuPosition.height + 'px';
+var isAdded = false;
+
+window.addEventListener('scroll', function() {
+  if ((window.pageYOffset)>= 225 && !isAdded) {
+      menu.classList.add('sticky');
+      menu.parentNode.insertBefore(placeholder, menu);
+      isAdded = true;
+  } else if ((window.pageYOffset) < 225 && isAdded) {
+      menu.classList.remove('sticky');
+      menu.parentNode.removeChild(placeholder);
+      isAdded = false;
+  }
+});
+  </script>
   </body>
 </html>
