@@ -93,7 +93,19 @@ var body = document.querySelector("body");
   //   parent.appendChild(elementName);
   //   return elementName;
   // }
-  function newTagText(tagType, elementName, parent, text, src, height, width){
+
+  function newTag(tagName, options) {
+    for (var i = 0; i < arguments.length; i++) {
+      var arg = arguments[i];
+    }
+  }
+
+  var logo = newTag("img", {
+    src: "http://...",
+    width: "..."
+  });
+
+  function newTagText(tagType, parent, text, src, height, width){
     var elementName=document.createElement(tagType);
     parent.appendChild(elementName);
     if (tagType==='img'){
@@ -115,18 +127,20 @@ var body = document.querySelector("body");
   //   return elementName;
   // }
 
-var header = newTagText("header", header, body);
-var logo = newTagText("img", logo, header, 'text', "http://f.cl.ly/items/05361u3R0D3i1c2y2203/acme-corp.jpg", "52px", "200px");
-var nav= newTagText("nav", nav, header);
-var anchor= newTagText("a", anchor, nav, "Products");
-var button= newTagText("button", button, nav, "Sign Up");
-var main = newTagText("main", main, body);
-var section = newTagText("section", section, main);
-var h1 = newTagText("h1", h1, section, "Welcome to ACME Corp!");
-var p1 = newTagText("p", p1, section, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ");
-var p2 = newTagText("p", p2, section, "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-var footer = newTagText("footer", footer, body);
-var p3 = newTagText("p", p3, footer, "Copyright, 2015");
+var header = newTagText("header", body);
+var logo = newTagText("img", header, 'text', "http://f.cl.ly/items/05361u3R0D3i1c2y2203/acme-corp.jpg", "52px", "200px");
+var nav= newTagText("nav", header);
+var anchor= newTagText("a", nav, "Products");
+var button= newTagText("button", nav, "Sign Up");
+
+var main = newTagText("main", body);
+var section = newTagText("section", main);
+var h1 = newTagText("h1", section, "Welcome to ACME Corp!");
+var p1 = newTagText("p", section, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ");
+var p2 = newTagText("p", section, "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+
+var footer = newTagText("footer", body);
+var p3 = newTagText("p", footer, "Copyright, 2015");
 
 </script>
   </body>
