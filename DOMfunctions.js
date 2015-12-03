@@ -1,17 +1,17 @@
 var body = document.querySelector("body");
 
-  function newTag(tagType, elementName, parent){
+  function newTag(tagType, parent){
     var elementName=document.createElement(tagType);
     parent.appendChild(elementName);
     return elementName;
   }
-  function newTagText(tagType, elementName, parent, text){
+  function newTagText(tagType, parent, text){
     var elementName=document.createElement(tagType);
     parent.appendChild(elementName);
     elementName.textContent=text;
     return elementName;
   }
-  function newImage(elementName, parent, src, height, width){
+  function newImage(parent, src, height, width){
     var elementName=document.createElement("img");
     parent.appendChild(elementName);
     elementName.setAttribute("src", src);
