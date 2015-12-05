@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Stoplight</title>
+    <style media="screen">
+      body{
+
+      }
+      ul{
+        list-style: none;
+     }
+     li{
+       display: inline;
+
+     }
+     .whole-light{
+       background-color: rgb(242, 198, 0);
+       width: 220px;
+       border-radius: 10px;
+       margin: auto;
+       padding-top: 20px;
+       padding-bottom: 40px;
+     }
+    .stop, .slow, .go {
+      border-radius: 100px;
+      background: rgb(110, 87, 0);
+      height: 120px;
+      width: 120px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 25px;
+      border-top: 6px solid black;
+      border-left: 4px solid black;
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
+
+
+    }
+    .red{
+      background-color: red;
+    }
+    .yellow{
+      background-color: yellow;
+    }
+    .green{
+      background-color: green;
+    }
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li><button type="button" id="go">Go</button></li>
+        <li><button type="button" id="slow">Slow</button></li>
+        <li><button type="button" id="stop">Stop</button></li>
+        <li><button type="button" id="caution">Caution</button></li>
+      </ul>
+    </header>
+    <main>
+      <div class="whole-light">
+
+        <div class="stop">
+
+        </div>
+        <div class="slow">
+
+        </div>
+        <div class="go">
+
+        </div>
+    </div>
+
+    </main>
+<script type="text/javascript">
+
+  var buttons= document.querySelectorAll("button");
+  var green = document.querySelector(".go");
+  var red = document.querySelector(".stop");
+  var yellow = document.querySelector(".slow");
+  var blinking ;
+  var blink; //only worked when i declared this as a global var
+
+  for (var i=0; i < buttons.length; i++){
+    buttons[i].addEventListener('click', light);
+  }
+  function toggleSlow(){
+    yellow.classList.toggle('yellow');
+  }
+  function light(event){
+    event.preventDefault();
+    var action = event.target.getAttribute('id');
+    var light= document.querySelector('.'+action);
+    if (blinking){
+      blinking = false;
+      window.clearInterval(blink);
+    };
+    green.classList.remove('green');
+    yellow.classList.remove('yellow');
+    red.classList.remove('red');
+    if (action === "go"){
+      light.classList.add('green');
+    };
+    if (action === "slow"){
+      light.classList.add('yellow');
+    };
+    if (action === "stop"){
+      light.classList.add('red');
+    };
+    if (action === "caution"){
+      blinking = true;
+      blink =setInterval(toggleSlow, 500);
+    };
+  }
+
+</script>
+  </body>
+</html>
