@@ -19,3 +19,7 @@ var body = document.querySelector("body");
     elementName.setAttribute("width", width);
     return elementName;
   }
+
+function convertToNumber(input){
+  return parseInt(input.value);
+}
