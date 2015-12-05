@@ -65,24 +65,30 @@ var howl = new Howl({
 
 <script type="text/javascript">
 
-var c = document.querySelector("#C")
-var d = document.querySelector("#D")
-var e = document.querySelector("#E")
-var f = document.querySelector("#F")
-var g = document.querySelector("#G")
-var a = document.querySelector("#A")
-var b = document.querySelector("#B")
+var notes= document.querySelectorAll(".key");
 
-c.addEventListener("click", playnote);
-d.addEventListener("click", playnote);
-e.addEventListener("click", playnote);
-f.addEventListener("click", playnote);
-g.addEventListener("click", playnote);
-a.addEventListener("click", playnote);
-b.addEventListener("click", playnote);
+for (var i=0; i < notes.length; i++){
+  notes[i].addEventListener('click', playnote);
+}
+
+// var c = document.querySelector("#C")
+// var d = document.querySelector("#D")
+// var e = document.querySelector("#E")
+// var f = document.querySelector("#F")
+// var g = document.querySelector("#G")
+// var a = document.querySelector("#A")
+// var b = document.querySelector("#B")
+//
+// c.addEventListener("click", playnote);
+// d.addEventListener("click", playnote);
+// e.addEventListener("click", playnote);
+// f.addEventListener("click", playnote);
+// g.addEventListener("click", playnote);
+// a.addEventListener("click", playnote);
+// b.addEventListener("click", playnote);
 
 function playnote(event) {
-  note= event.target.getAttribute('id');
+  var note= event.target.getAttribute('id');
   howl.play(note);
 }
 
