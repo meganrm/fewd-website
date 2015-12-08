@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+    body{
+      color: white;
+    }
+    .speech{
+      background-color: purple;
+      position: relative;
+      padding: 20px;
+
+    }
+      /*.triangle{
+        background-color: purple;
+        width: 0;
+        height: 0;
+        border: 100px solid green;
+        border-top-color:  purple ;
+
+        border-left-color:  white ;
+        border-right-color:  white ;
+        border-bottom-color: white;
+        border-left-width: 50px;
+        border-right-width: 50px;
+
+        position: absolute;
+        bottom: -200px;
+        right: 10%;
+      }*/
+
+      .speech::after{
+        content: '';
+        width: 0;
+        height: 0;
+        border: 100px solid green;
+        border-top-color:  purple ;
+        border-left-color:  transparent ;
+        border-right-color:  white ;
+        border-bottom-color: white;
+        border-left-width: 50px;
+        border-right-width: 50px;
+
+        position: absolute;
+        bottom: -200px;
+        right: 10%;
+
+
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="speech">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <!-- <div class="triangle">
+
+    </div> -->
+  </div>
+
+  </body>
+</html>
