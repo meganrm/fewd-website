@@ -48,6 +48,7 @@
       border-radius: 100px;
       background: rgb(110, 87, 0);
       transition: background 800ms;
+
       height: 120px;
       width: 120px;
       margin-left: auto;
@@ -60,14 +61,24 @@
 
 
     }
+    .shadow{
+      transition: box-shadow 100ms;
+
+    }
     .red{
       background-color: red;
+      box-shadow: 0 5px 5px rgba(255, 0, 0, 0.5);
     }
+
     .yellow{
       background-color: yellow;
+      box-shadow: 0 5px 5px rgba(255, 255, 0, 0.5);
+
     }
     .green{
       background-color: lightgreen;
+      box-shadow: 0 5px 5px rgba(138, 248, 131, 0.5);
+
     }
 
     </style>
@@ -84,13 +95,13 @@
     <main>
       <div class="whole-light">
 
-        <div class="stop">
+        <div class="stop shadow">
 
         </div>
-        <div class="slow">
+        <div class="slow shadow">
 
         </div>
-        <div class="go">
+        <div class="go shadow">
 
         </div>
     </div>
@@ -115,8 +126,7 @@
     event.preventDefault();
     var action = event.target.getAttribute('id');
     var light= document.querySelector('.'+action);
-    if (blinking){
-      blinking = false;
+    if (blink){
       window.clearInterval(blink);
     };
     green.classList.remove('green');
@@ -132,7 +142,6 @@
       light.classList.add('red');
     };
     if (action === "caution"){
-      blinking = true;
       blink =setInterval(toggleSlow, 500);
     };
   }
