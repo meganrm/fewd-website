@@ -13,11 +13,6 @@ function calcPy(event) {
   }
 }
 
-
-
-
-
-
 var r = document.querySelector('.circum-r');
 var c = document.querySelector('.circum-c');
 
@@ -31,17 +26,11 @@ function calcC(event) {
   }
 }
 
-
-
-
-
-
-
 var tempF = document.querySelector('.temp-f');
 var tempC = document.querySelector('.temp-c');
 
 tempF.addEventListener('keyup', calcFtoC);
-tempC.addEventListener('keyup', calcCtoF);
+ tempC.addEventListener('keyup', calcCtoF);
 
 function calcFtoC(event) {
   if (tempF.value.length > 0) {
