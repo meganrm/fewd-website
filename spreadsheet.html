@@ -81,6 +81,55 @@ buttons = $('button');
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', modtable);
 }
+function checktext(list){
+  var text=false;
+  for (var i = 1; i < list.length; i++) {
+    if (list[i].textContent){
+      text = true;
+    }
+  }
+  return text
+}
+
+function addRow(nRows, nCol){
+  var newRow= document.createElement('tr');
+  table.appendChild(newRow);
+  var newCell = document.createElement('td');
+  newCell.textContent = nRows+1;
+  newRow.appendChild(newCell);
+  for (var i = 0; i < (nCol-1); i++) {
+    var newCell = document.createElement('td');
+    newCell.setAttribute('contenteditable', true);
+    newRow.appendChild(newCell);
+  };
+}
+
+function addColumn(rows){
+  for (var i = 0; i < rows.length; i++) {
+  var newCell = document.createElement('td');
+  newCell.setAttribute('contenteditable', true);
+  rows[i].appendChild(newCell);
+};
+}
+
+function removeRow(rows, nRows){
+  var lastrow= rows[nRows-1];
+  var text=false;
+  for (var i = 1; i < lastrow['columns'].length; i++) {
+    if (lastrow['columns'][i].textContent){
+      text = true;
+    }
+  }
+  if (text){
+    if(confirm('are you sure? Super Sure?')){
+      table.removeChild(lastrow);
+    }
+  }
+  else{
+    table.removeChild(lastrow);
+  }
+}
+
 
 function modtable(event){
   var rows = document.querySelectorAll('tr');
@@ -91,61 +140,32 @@ function modtable(event){
   // console.log(nRows, nCol)
 
   if (id == 'add-row'){
-    var newRow= document.createElement('tr');
-    table.appendChild(newRow);
-    var newCell = document.createElement('td');
-    newCell.textContent = nRows+1;
-    newRow.appendChild(newCell);
-    for (var i = 0; i < (nCol-1); i++) {
-      var newCell = document.createElement('td');
-      newCell.setAttribute('contenteditable', true);
-      newRow.appendChild(newCell);
-    };
+    addRow(nRows, nCol);
   };//end of add row
 
+  if (id == 'add-column'){
+    addColumn(rows);
+  }; //end of add column
   if (id == 'remove-row'){
     if (nRows==1) {
       alert('last row!')
     }
     else{
-      var lastrow= rows[nRows-1];
-      var text=false;
-      for (var i = 1; i < lastrow['columns'].length; i++) {
-        if (lastrow['columns'][i].textContent){
-          text = true;
-        }
-      }
-      if (text){
-        if(confirm('are you sure? Super Sure?')){
-          table.removeChild(lastrow);
-      }
+      removeRow(rows, nRows);
     }
-     else{
-       table.removeChild(lastrow);
-  }
-}
   };//end of remove row
-
-
-  if (id == 'add-column'){
-    for (var i = 0; i < rows.length; i++) {
-      var newCell = document.createElement('td');
-      newCell.setAttribute('contenteditable', true);
-      rows[i].appendChild(newCell);
-    };
-  }; //end of add column
 
   if (id == 'remove-column'){
     if (nCol==1) {
       alert('last column!')
     }
     else{
-    for (var i = 0; i < rows.length; i++) {
-      var columns= rows[i]['columns']
-
-      rows[i].removeChild(columns[nCol-1]);
+      for (var i = 0; i < rows.length; i++) {
+        var columns= rows[i]['columns']
+        rows[i].removeChild(columns[nCol-1]);
     };
-}}
+    }
+  }
 
 }
 // Your code goes here :-)
