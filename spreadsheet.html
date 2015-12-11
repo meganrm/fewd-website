@@ -130,9 +130,9 @@ function removeRow(rows, nRows){
     table.removeChild(lastrow);
   }
 }
-function removeColumn(rows){
+function removeColumn(cellstoremove, rows){
   for (var i = 0; i < cellstoremove.length; i++) {
-    rows[i].removeChild(columns[nCol-1]);
+    rows[i].removeChild(cellstoremove[i]);
   }
 }
 
@@ -173,10 +173,10 @@ function modtable(event){
       }
       if (checktext(cellstoremove)){
         if(confirm('are you sure? Super Sure?')){
-            removeColumn(rows);
+            removeColumn(cellstoremove, rows);
           }
         }
-      else {removeColumn(rows);}
+      else {removeColumn(cellstoremove, rows);}
         // rows[i].removeChild(columns[nCol-1]);
     };
     }
