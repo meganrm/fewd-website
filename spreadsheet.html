@@ -50,32 +50,47 @@ button {
 
 <button id="add-row">Add a Row</button>
 <button id="add-column">Add a Column</button>
-
+<button id="remove-row">Remove a Row</button>
+<button id="remove-column">Remove a Column</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
 
-var rows=[];
-var cells=[];
+//var rows=[];
+//var cells=[];
 
+var table = document.querySelector("tbody")
 
-var table = document.querySelector("table")
-    function numOfRows(){
-    rows = document.querySelectorAll('tr')
-    return rows.length
-  }
-  function numOfCells(){
-    var cells = document.querySelectorAll('td')
-    return cells.length
-  }
+// function numOfRows(){
+//     rows = document.querySelectorAll('tr');
+//     return rows.length;
+//   }
+//
+// function numOfCells(){
+//     cells = document.querySelectorAll('td');
+//     return cells.length;
+//   }
 
-  var addRowButton = document.querySelector("#add-row");
-  var addColumnButton = document.querySelector("#add-column");
+function numOfColumns(rows){
+      for (var i = 0; i < rows.length; i++) {
+        rows[i]['columns'] = rows[i].children
+      }
+      return rows[0]['columns'].length;
+    }
 
-  addRowButton.addEventListener("click", addRow);
-  addColumnButton.addEventListener("click", addColumn);
+buttons = $('button');
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener('click', modtable);
+}
 
-  function addRow(){
-    var nRows=numOfRows();
-    var nCol = numOfCells()/nRows;
+function modtable(event){
+  var rows = document.querySelectorAll('tr');
+  var cells = document.querySelectorAll('td');
+  var nRows=rows.length;
+  var nCol = numOfColumns(rows);
+  var id = event.target.getAttribute('id');
+  // console.log(nRows, nCol)
+
+  if (id == 'add-row'){
     var newRow= document.createElement('tr');
     table.appendChild(newRow);
     var newCell = document.createElement('td');
@@ -86,20 +101,52 @@ var table = document.querySelector("table")
       newCell.setAttribute('contenteditable', true);
       newRow.appendChild(newCell);
     };
-  };
+  };//end of add row
+
+  if (id == 'remove-row'){
+    if (nRows==1) {
+      alert('last row!')
+    }
+    else{
+      var lastrow= rows[nRows-1];
+      var text=false;
+      for (var i = 1; i < lastrow['columns'].length; i++) {
+        if (lastrow['columns'][i].textContent){
+          text = true;
+        }
+      }
+      if (text){
+        if(confirm('are you sure? Super Sure?')){
+          table.removeChild(lastrow);
+      }
+    }
+     else{
+       table.removeChild(lastrow);
+  }
+}
+  };//end of remove row
 
 
-  function addColumn(){
-    var nRows=numOfRows();
-    var nCol = numOfCells()/nRows;
-
+  if (id == 'add-column'){
     for (var i = 0; i < rows.length; i++) {
       var newCell = document.createElement('td');
       newCell.setAttribute('contenteditable', true);
       rows[i].appendChild(newCell);
     };
-  };
+  }; //end of add column
 
+  if (id == 'remove-column'){
+    if (nCol==1) {
+      alert('last column!')
+    }
+    else{
+    for (var i = 0; i < rows.length; i++) {
+      var columns= rows[i]['columns']
 
+      rows[i].removeChild(columns[nCol-1]);
+    };
+}}
+
+}
 // Your code goes here :-)
 </script>
