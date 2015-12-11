@@ -65,11 +65,7 @@ var howl = new Howl({
 
 <script type="text/javascript">
 
-var notes= document.querySelectorAll(".key");
 
-for (var i=0; i < notes.length; i++){
-  notes[i].addEventListener('click', playnote);
-}
 
 // var c = document.querySelector("#C")
 // var d = document.querySelector("#D")
@@ -87,8 +83,14 @@ for (var i=0; i < notes.length; i++){
 // a.addEventListener("click", playnote);
 // b.addEventListener("click", playnote);
 
+var notes= document.querySelectorAll(".key");
+for (var i=0; i < notes.length; i++){
+  notes[i].addEventListener('click', playnote);
+}
+
+
 function playnote(event) {
-  var note= event.target.getAttribute('id');
+  var note= event.target.getAttribute('id'); //also could be event.target.id
   howl.play(note);
 }
 
