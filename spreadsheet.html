@@ -1,0 +1,105 @@
+<style>
+body {
+  font-family: sans-serif;
+  margin: 2em 4em;
+}
+table {
+  margin-bottom: 1em;
+}
+td {
+  border: 1px solid #ccc;
+  padding: 1em;
+}
+button {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom-width: 2px;
+  border-radius: 5px; font-size: inherit;
+  color: white;
+  background-color: #049cd8;
+  padding: .5em 1em;
+  cursor: pointer;
+}
+</style>
+
+<h1>Spreadsheet</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td contenteditable>Avand</td>
+      <td contenteditable>Instructor</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td contenteditable>Sandi</td>
+      <td contenteditable>TA</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td contenteditable>Yana</td>
+      <td contenteditable>Student</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td contenteditable>Maks</td>
+      <td contenteditable>Student</td>
+    </tr>
+  </tbody>
+</table>
+
+<button id="add-row">Add a Row</button>
+<button id="add-column">Add a Column</button>
+
+<script>
+
+var rows=[];
+var cells=[];
+
+
+var table = document.querySelector("table")
+    function numOfRows(){
+    rows = document.querySelectorAll('tr')
+    return rows.length
+  }
+  function numOfCells(){
+    var cells = document.querySelectorAll('td')
+    return cells.length
+  }
+
+  var addRowButton = document.querySelector("#add-row");
+  var addColumnButton = document.querySelector("#add-column");
+
+  addRowButton.addEventListener("click", addRow);
+  addColumnButton.addEventListener("click", addColumn);
+
+  function addRow(){
+    var nRows=numOfRows();
+    var nCol = numOfCells()/nRows;
+    var newRow= document.createElement('tr');
+    table.appendChild(newRow);
+    var newCell = document.createElement('td');
+    newCell.textContent = nRows+1;
+    newRow.appendChild(newCell);
+    for (var i = 0; i < (nCol-1); i++) {
+      var newCell = document.createElement('td');
+      newCell.setAttribute('contenteditable', true);
+      newRow.appendChild(newCell);
+    };
+  };
+
+
+  function addColumn(){
+    var nRows=numOfRows();
+    var nCol = numOfCells()/nRows;
+
+    for (var i = 0; i < rows.length; i++) {
+      var newCell = document.createElement('td');
+      newCell.setAttribute('contenteditable', true);
+      rows[i].appendChild(newCell);
+    };
+  };
+
+
+// Your code goes here :-)
+</script>
