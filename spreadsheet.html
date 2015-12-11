@@ -81,6 +81,7 @@ buttons = $('button');
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', modtable);
 }
+
 function checktext(list){
   var text=false;
   for (var i = 1; i < list.length; i++) {
@@ -114,19 +115,24 @@ function addColumn(rows){
 
 function removeRow(rows, nRows){
   var lastrow= rows[nRows-1];
-  var text=false;
-  for (var i = 1; i < lastrow['columns'].length; i++) {
-    if (lastrow['columns'][i].textContent){
-      text = true;
-    }
-  }
-  if (text){
+  // var text=false;
+  // for (var i = 1; i < lastrow['columns'].length; i++) {
+  //   if (lastrow['columns'][i].textContent){
+  //     text = true;
+  //   }
+  // }
+  if (checktext(lastrow['columns'])){
     if(confirm('are you sure? Super Sure?')){
       table.removeChild(lastrow);
     }
   }
   else{
     table.removeChild(lastrow);
+  }
+}
+function removeColumn(rows){
+  for (var i = 0; i < cellstoremove.length; i++) {
+    rows[i].removeChild(columns[nCol-1]);
   }
 }
 
@@ -157,16 +163,27 @@ function modtable(event){
 
   if (id == 'remove-column'){
     if (nCol==1) {
-      alert('last column!')
+      alert('Dont remove the last column!')
     }
     else{
+      var cellstoremove= [];
       for (var i = 0; i < rows.length; i++) {
         var columns= rows[i]['columns']
-        rows[i].removeChild(columns[nCol-1]);
+        cellstoremove.push(columns[nCol-1])
+      }
+      if (checktext(cellstoremove)){
+        if(confirm('are you sure? Super Sure?')){
+            removeColumn(rows);
+          }
+        }
+      else {removeColumn(rows);}
+        // rows[i].removeChild(columns[nCol-1]);
     };
     }
-  }
 
 }
+
+
+
 // Your code goes here :-)
 </script>
