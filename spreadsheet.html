@@ -76,11 +76,8 @@ for (var i = 0; i < buttons.length; i++) {
 }
 
 //RETRIEVE NUMBER OF COLUMNS
-function numOfColumns(rows){
-      for (var i = 0; i < rows.length; i++) {
-        rows[i]['columns'] = rows[i].children
-      }
-      return rows[0]['columns'].length;
+function numOfColumns(){
+  return document.querySelectorAll("tr:first-child td").length
     }
 
 
@@ -119,7 +116,7 @@ function addColumn(rows){
 
 function removeRow(rows, nRows){
   var lastrow= rows[nRows-1];
-  if (checktext(lastrow['columns'])){
+  if (checktext(lastrow.children)){
     if(confirm('are you sure? Super Sure?')){
       table.removeChild(lastrow);
     }
@@ -139,19 +136,15 @@ function modtable(event){
   var rows = document.querySelectorAll('tr');
   var cells = document.querySelectorAll('td');
   var nRows=rows.length;
-  var nCol = numOfColumns(rows);
+  var nCol = numOfColumns();
   var id = event.target.getAttribute('id');
   // console.log(nRows, nCol)
-
   if (id == 'add-row'){
     addRow(nRows, nCol);
   };
-
   if (id == 'add-column'){
     addColumn(rows);
   };
-
-
   if (id == 'remove-row'){
     if (nRows==1) {
       alert('last row!')//prevent removing the last row
@@ -168,7 +161,7 @@ function modtable(event){
     else{
       var cellstoremove= [];
       for (var i = 0; i < rows.length; i++) {
-        var columns= rows[i]['columns']
+        var columns= rows[i].children
         cellstoremove.push(columns[nCol-1])
       }//make a list of last element in each row
       if (checktext(cellstoremove)){

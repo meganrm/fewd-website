@@ -22,7 +22,7 @@ function formSubmitted(event) {
 var movielist= document.querySelector('#movies')
 
 function resultsReceived(results) {
-  // debugger
+   
   // Try putting a debugger here and inspecting the results argument
   // The array of movies lives inside results["Search"]
   // See the sampleResult above for an example
