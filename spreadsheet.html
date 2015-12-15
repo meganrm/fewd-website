@@ -70,6 +70,12 @@ var table = document.querySelector("tbody")
 //     return cells.length;
 //   }
 
+buttons = $('button');
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener('click', modtable);
+}
+
+//RETRIEVE NUMBER OF COLUMNS
 function numOfColumns(rows){
       for (var i = 0; i < rows.length; i++) {
         rows[i]['columns'] = rows[i].children
@@ -77,11 +83,9 @@ function numOfColumns(rows){
       return rows[0]['columns'].length;
     }
 
-buttons = $('button');
-for (var i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener('click', modtable);
-}
 
+
+//CHECK IF THERE IS TEXT IN THE CELLS
 function checktext(list){
   var text=false;
   for (var i = 1; i < list.length; i++) {
@@ -91,12 +95,12 @@ function checktext(list){
   }
   return text
 }
-
+//ADD A NEW ROW
 function addRow(nRows, nCol){
   var newRow= document.createElement('tr');
   table.appendChild(newRow);
   var newCell = document.createElement('td');
-  newCell.textContent = nRows+1;
+  newCell.textContent = nRows+1; //enter number in the first column
   newRow.appendChild(newCell);
   for (var i = 0; i < (nCol-1); i++) {
     var newCell = document.createElement('td');
@@ -115,12 +119,6 @@ function addColumn(rows){
 
 function removeRow(rows, nRows){
   var lastrow= rows[nRows-1];
-  // var text=false;
-  // for (var i = 1; i < lastrow['columns'].length; i++) {
-  //   if (lastrow['columns'][i].textContent){
-  //     text = true;
-  //   }
-  // }
   if (checktext(lastrow['columns'])){
     if(confirm('are you sure? Super Sure?')){
       table.removeChild(lastrow);
@@ -147,30 +145,32 @@ function modtable(event){
 
   if (id == 'add-row'){
     addRow(nRows, nCol);
-  };//end of add row
+  };
 
   if (id == 'add-column'){
     addColumn(rows);
-  }; //end of add column
+  };
+
+
   if (id == 'remove-row'){
     if (nRows==1) {
-      alert('last row!')
+      alert('last row!')//prevent removing the last row
     }
     else{
       removeRow(rows, nRows);
     }
-  };//end of remove row
+  };
 
   if (id == 'remove-column'){
     if (nCol==1) {
-      alert('Dont remove the last column!')
+      alert('Dont remove the last column!')//prevent removing the last column
     }
     else{
       var cellstoremove= [];
       for (var i = 0; i < rows.length; i++) {
         var columns= rows[i]['columns']
         cellstoremove.push(columns[nCol-1])
-      }
+      }//make a list of last element in each row
       if (checktext(cellstoremove)){
         if(confirm('are you sure? Super Sure?')){
             removeColumn(cellstoremove, rows);
