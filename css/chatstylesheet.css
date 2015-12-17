@@ -14,3 +14,44 @@ body{
   left: 0;
   padding: 20px;
 }
+
+li{
+  list-style: none;
+  padding: 20px;
+
+}
+#message-list{
+  margin-bottom: 100px;
+}
+.message{
+  background-color: lightblue;
+  padding:10px;
+  width: 100%;
+  display: inline-block;
+
+}
+.username{
+  color: #ccc;
+
+
+}
+
+
+      /*span::after{
+        content: '';
+        width: 0;
+        height: 0;
+        border: 100px solid green;
+        border-top-color:  purple ;
+        border-left-color:  transparent ;
+        border-right-color:  transparent ;
+        border-bottom-color: transparent;
+        border-left-width: 10px;
+        border-right-width: 10px;
+
+        position: absolute;
+        bottom: -200px;
+        right: 10%;
+
+
+      }*/
