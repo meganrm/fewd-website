@@ -14,16 +14,17 @@
       <input type="text" id="new-message" placeholder="How are you feeling?">
       <button type="submit">Send</button>
     </form>
-  </div>
+
+</div>
 
     <ul id="message-list">
     </ul>
 
 
-    <script type="text/javascript">
-    var firebase = new Firebase("https://blinding-inferno-7422.firebaseio.com")
+<script type="text/javascript">
+var firebase = new Firebase("https://blinding-inferno-7422.firebaseio.com")
 
-    function newTagText(tagType, parent, text){
+function newTagText(tagType, parent, text){
         var elementName=document.createElement(tagType);
         parent.appendChild(elementName);
         elementName.textContent=text;
@@ -31,54 +32,46 @@
       };
 
 var messagelist= document.querySelector('#message-list')
-
-
-
-firebase.limitToLast(10).on('child_added', function (snapshot) {
-      var results = snapshot.val();
-      // for (var key in results) {
-      //   if (results.hasOwnProperty(key)) {
-      debugger
-         var li = newTagText('li', messagelist)
-         var span = newTagText('span', li, results['messageBody'])
-         span.classList.add('message')
-         var name = newTagText('div', li, results['username'])
-         name.classList.add('username')
-
-      //   }
-      //
-      // }
-     console.log(results);
-      // var li = newTagText('li', messagelist, results)
-      // for (var i = 0; i < results.length; i++) {
-      //   console.log(i, results[i]);
-      // }
-
-});
 var sendbutton = document.querySelector('#chatbox');
 sendbutton.addEventListener('submit', sendmessage);
 var localusername= localStorage.getItem('username');
 
 
+firebase.limitToLast(10).on('child_added', function (snapshot) {
+    var results = snapshot.val();
+      // for (var key in results) {
+      //   if (results.hasOwnProperty(key)) {
+    debugger
+    var li = newTagText('li', messagelist)
+    var span = newTagText('span', li, results['messageBody'])
+    span.classList.add('message')
+    var name = newTagText('div', li, results['username'])
+    name.classList.add('username')
+
+      //   }
+      //
+      // }
+     console.log(results);
+});
+
 function sendmessage(event){
   event.preventDefault()
-    var message = document.querySelector('#new-message').value
-    console.log(message);
-    if (!(localusername)){
+  var message = document.querySelector('#new-message').value
+//  console.log(message);
+  if (!(localusername)){
       localusername=storeusername()
     };
-    debugger
-    firebase.push({
+  firebase.push({
       username: localusername,
       messageBody: message
     })}
 
 
-    function storeusername() {
+function storeusername() {
       var un = prompt("what is your username")
       localStorage.setItem("username", un)
       return un;
-    }
+}
 
 
     </script>
