@@ -1,0 +1,16 @@
+body{
+  margin: 0;
+}
+#chatbox{
+
+}
+
+.chatbar{
+  width: 100%;
+  background-color: gray;
+  position: fixed;
+  bottom: 0;
+  right :0;
+  left: 0;
+  padding: 20px;
+}

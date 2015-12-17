@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>firebase first try</title>
+    <link rel="stylesheet" href="css/chatstylesheet.css" media="screen" title="no title" charset="utf-8">
+    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+
+  </head>
+  <body>
+<div class="chatbar">
+
+    <form id="chatbox" >
+      <input type="text" id="new-message" placeholder="How are you feeling?">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+    <ul id="message-list">
+    </ul>
+
+
+    <script type="text/javascript">
+      var firebase = new Firebase("https://blinding-inferno-7422.firebaseio.com")
+
+      function newTagText(tagType, parent, text){
+        var elementName=document.createElement(tagType);
+        parent.appendChild(elementName);
+        elementName.textContent=text;
+        return elementName;
+      };
+
+var messagelist= document.querySelector('#message-list')
+
+    firebase.on('child_added', function (snapshot) {
+      var results = snapshot.val();
+      for (var key in results) {
+        if (results.hasOwnProperty(key)) {
+         var li = newTagText('li', messagelist, results['messageBody'])
+        }
+      }
+//      console.log(data);
+      // var li = newTagText('li', messagelist, results)
+      // for (var i = 0; i < results.length; i++) {
+      //   console.log(i, results[i]);
+      // }
+});
+    var sendbutton = document.querySelector('#chatbox');
+    sendbutton.addEventListener('submit', sendmessage);
+    var username= localStorage.getItem('username');
+
+
+function sendmessage(event){
+  event.preventDefault()
+    var message = document.querySelector('#new-message').value
+    console.log(message);
+    if (!(username)){
+      storeusername()
+    }
+    firebase.push({
+      username:username,
+      messageBody: message
+    })}
+
+
+    function storeusername(argument) {
+      var un = prompt("what is your username")
+      localStorage.setItem("username", un)
+    }
+    </script>
+  </body>
+</html>
