@@ -41,7 +41,7 @@ firebase.limitToLast(10).on('child_added', function (snapshot) {
     var results = snapshot.val();
       // for (var key in results) {
       //   if (results.hasOwnProperty(key)) {
-    debugger
+//    debugger
     var li = newTagText('li', messagelist)
     var span = newTagText('span', li, results['messageBody'])
     span.classList.add('message')
