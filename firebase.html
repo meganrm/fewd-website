@@ -6,19 +6,35 @@
     <link rel="stylesheet" href="css/chatstylesheet.css" media="screen" title="no title" charset="utf-8">
     <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://f.cl.ly/items/2K2Z2g0L3v1q1I413j1O/strftime%20githubcomsamsonjsstrf.txt"></script>
   </head>
   <body>
 <div class="chatbar">
 
     <form id="chatbox" >
-      <input type="text" id="new-message" placeholder="How are you feeling?">
+      <input type="text" id="new-message" placeholder="What's on your mind?">
       <button type="submit">Send</button>
     </form>
 
 </div>
 
+<div class="username-bar">
+
+    <form id="username" >
+      <input type="text" id="username-input" placeholder="What's your name?">
+    </form>
+
+</div>
+
+<div class="messages">
+
     <ul id="message-list">
     </ul>
+
+    <div class="no-messages">
+      <h2>no messages</h2>
+    </div>
+  </div>
 
 
 <script type="text/javascript">
@@ -33,45 +49,62 @@ function newTagText(tagType, parent, text){
 
 var messagelist= document.querySelector('#message-list')
 var sendbutton = document.querySelector('#chatbox');
+var nomessages = document.querySelector(".no-messages")
 sendbutton.addEventListener('submit', sendmessage);
 var localusername= localStorage.getItem('username');
+if (localusername){
+  document.querySelector('#username-input').value="Hi there, "+localusername;
+}
 
-
-firebase.limitToLast(10).on('child_added', function (snapshot) {
+firebase.on('child_added', function (snapshot) {
     var results = snapshot.val();
+    if (results){
+      nomessages.classList.add('hide')
+    }
       // for (var key in results) {
       //   if (results.hasOwnProperty(key)) {
 //    debugger
     var li = newTagText('li', messagelist)
-    var span = newTagText('span', li, results['messageBody'])
-    span.classList.add('message')
-    var name = newTagText('div', li, results['username'])
+    var post = newTagText('div', li);
+    post.classList.add('post');
+    var p = newTagText('p', post, results['messageBody'])
+    p.classList.add('message')
+    var name = newTagText('span', post, results['username'])
     name.classList.add('username')
+    var createdAt = new Date(results['createdAt']);
+    var date =newTagText('span', post, strftime('%a %l:%M %P', createdAt));
+    date.classList.add('timestamp')
+    window.scroll(0,document.body.scrollHeight);
+
 
       //   }
       //
       // }
-     console.log(results);
+//     console.log(results);
 });
 
 function sendmessage(event){
   event.preventDefault()
-  var message = document.querySelector('#new-message').value
 //  console.log(message);
   if (!(localusername)){
-      localusername=storeusername()
+      localusername=prompt("what is your username");
+      localStorage.setItem("username", localusername)
     };
   firebase.push({
       username: localusername,
-      messageBody: message
-    })}
+      messageBody: document.querySelector('#new-message').value,
+      createdAt: (new Date().getTime())
+    })
+sendbutton.reset();
+  }
 
 
-function storeusername() {
-      var un = prompt("what is your username")
-      localStorage.setItem("username", un)
-      return un;
+function storeusername(event) {
+    localStorage.setItem("username", document.querySelector('#username-input').value)
 }
+
+var enterusername=document.querySelector('#username');
+enterusername.addEventListener('submit', storeusername);
 
 
     </script>
