@@ -31,6 +31,8 @@ button{
   right :0;
   left: 0;
   padding: 20px;
+  z-index: 1;
+
 }
 
 .username-bar{
@@ -41,7 +43,11 @@ button{
   right :0;
   left: 0;
   padding: 20px;
+  overflow: auto;
+  z-index: 1;
+
 }
+
 #username-input{
   display: block;
   width: 80%;
@@ -65,6 +71,8 @@ li{
 }
 .post{
   width: 100%;
+  position: relative;
+  overflow: auto;
 }
 
 .message{
@@ -88,22 +96,20 @@ li{
   min-width: 100px;
 }
 
-/*
-      .post::after{
-        content: '';
+
+.post::after{
+        content: ' ';
         width: 0;
         height: 0;
-        border: 100px solid green;
-        border-top-color:  purple ;
+        border: 10px solid green;
+        border-top-color:  white ;
         border-left-color:  transparent ;
         border-right-color:  transparent ;
         border-bottom-color: transparent;
         border-left-width: 10px;
         border-right-width: 10px;
-
         position: absolute;
-        bottom: -200px;
-        right: 10%;
+        bottom: 15px;
+        left: 5%;
 
-
-      }*/
+      }
