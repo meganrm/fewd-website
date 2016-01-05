@@ -1,0 +1,27 @@
+body{
+  margin: 0;
+}
+li{
+  list-style: none;
+  margin-bottom: 20px;
+
+}
+.name{
+  display: inline-block;
+  width: 20%;
+  vertical-align: top;
+}
+
+.statement{
+  display: inline-block;
+  width: 60%;
+  margin-left: 20px;
+}
+.checkbox{
+  vertical-align: top;
+
+}
+
+.hide{
+  display: none;
+}

@@ -1,6 +1,4 @@
-
-
-  var responses= {
+var responses= {
 "responses":[
 	{
 	  "ResponseID" : "R_1rvSCaNhHIrNtuv",
@@ -10357,12 +10355,5 @@
 	  "LocationLongitude" : "",
 	  "LocationAccuracy" : "-1"
 	}
-]}
-
-for (var i = 0; i < responses['responses'].length; i++) {
-  responses['responses'][i]
+]
 }
-
-
-
-</script>

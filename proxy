@@ -1,0 +1,7 @@
+$.get("http://proxy.avandamiri.com/get?url=" + escape("http://api.elsevier.com/content/search/scopus?query=kinases&apiKey=90fdd364d32fd8c87a35004ffa0d0fcf"), function() { })
+
+
+$.get("http://proxy.avandamiri.com/get?url=" + escape("http://api.elsevier.com/content/search/scopus?query=kinases&apiKey=90fdd364d32fd8c87a35004ffa0d0fcf"), function() { })
+
+
+$.get("http://proxy.avandamiri.com/get?url=" + escape("https://ucsf.co1.qualtrics.com/jfe/form/SV_25mfZHZDq8VQTU9/?SID"), function() { })

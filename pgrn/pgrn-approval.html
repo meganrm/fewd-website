@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+<link rel="stylesheet" href="pgrn-approval.css" media="screen" title="no title" charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- <script src="DOMfunctions"></script> -->
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script type="text/javascript" src='responses.js'>
+
+
+</script>
+  </head>
+  <body>
+    <main>
+      <form id="approval-form">
+        <ul id="for-approval">
+          <li> Name </li>
+          <!-- <li>
+          <input type="checkbox" name="name" value="">
+
+        </li> -->
+        </ul>
+      </form>
+
+
+    </main>
+  </body>
+
+</script>
+<script type="text/javascript">
+  for (var i = 0; i < responses['responses'].length; i++) {
+    var answers = responses['responses']
+    if (answers[i]['Q3_7_TEXT']){
+      appendtoList(answers[i]['Q3_7_TEXT'], answers[i]['Q4'])
+  }
+}
+
+  function appendtoList(name, statement) {
+    var item = $("<li>");
+    item.addClass('person').appendTo("#for-approval");
+    var form = $("<form>");
+    form.attr("id", name).appendTo(item);
+
+    var button = $('<button>', {
+    class: 'checkbox',
+    id: name}
+  )
+    button.text("Approve").appendTo(form);
+    $("<span>").addClass('name').text(name).appendTo(form)
+    $("<span>").addClass('statement').text(statement).appendTo(form);
+  }
+var checks= $(".checkbox")
+
+checks.on("click", function(event){
+      event.preventDefault();
+      $(this).parent().addClass('hide');
+      for (var i = 0; i < responses['responses'].length; i++) {
+        if (responses['responses'][i]['Q3_7_TEXT']==this.id){
+          responses['responses'][i]['approved']=true;
+          console.log(responses['responses'][i]);
+        }
+      }
+      this.id;
+
+})
+
+  </script>
+
+</html>

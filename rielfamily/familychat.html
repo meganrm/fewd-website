@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>firebase first try</title>
+    <style media="screen">
+    body{
+      margin: 0;
+      background: rgb(233, 245, 254);
+    }
+    #new-message{
+      display: inline-block;
+      width: 80%;
+      height: 30px;
+    }
+
+    button{
+      border-radius: 0;
+      height: 30px;
+      width: 10%;
+      margin-left: 10px;
+    }
+    .chatbar{
+      width: 100%;
+      background-color: gray;
+      position: fixed;
+      bottom: 0;
+      right :0;
+      left: 0;
+      padding: 20px;
+    }
+
+    .username-bar{
+      width: 100%;
+      background-color: gray;
+      position: fixed;
+      top: 0;
+      right :0;
+      left: 0;
+      padding: 20px;
+    }
+
+
+    li{
+      list-style: none;
+      padding: 20px;
+    }
+
+    #message-list{
+      margin-bottom: 100px;
+      padding-left: 0;
+      margin-top: 100px;
+
+    }
+    .post{
+      width: 100%;
+    }
+
+    .message{
+      background-color: white;
+      padding:10px;
+      /*width: 100%;
+      display: inline-block;*/
+
+    }
+    .username{
+      color: #ccc;
+      display: inline-block;
+      width: 50%;
+      margin-left: 20px;
+    }
+
+    .timestamp{
+      display: inline-block;
+      width: 40%;
+      text-align: right;
+      min-width: 100px;
+    }
+
+    /*
+          .post::after{
+            content: '';
+            width: 0;
+            height: 0;
+            border: 100px solid green;
+            border-top-color:  purple ;
+            border-left-color:  transparent ;
+            border-right-color:  transparent ;
+            border-bottom-color: transparent;
+            border-left-width: 10px;
+            border-right-width: 10px;
+
+            position: absolute;
+            bottom: -200px;
+            right: 10%;
+
+
+          }*/
+
+    </style>
+    <link rel="stylesheet" href="css/chatstylesheet.css" media="screen" title="no title" charset="utf-8">
+    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://f.cl.ly/items/2K2Z2g0L3v1q1I413j1O/strftime%20githubcomsamsonjsstrf.txt"></script>
+  </head>
+  <body>
+<div class="chatbar">
+
+    <form id="chatbox" >
+      <input type="text" id="new-message" placeholder="What's on your mind?">
+      <button type="submit">Send</button>
+    </form>
+
+</div>
+
+
+
+    <ul id="message-list">
+    </ul>
+
+
+<script type="text/javascript">
+var firebase = new Firebase("https://rielfamilychat.firebaseio.com")
+
+function newTagText(tagType, parent, text){
+        var elementName=document.createElement(tagType);
+        parent.appendChild(elementName);
+        elementName.textContent=text;
+        return elementName;
+      };
+
+var messagelist= document.querySelector('#message-list')
+var sendbutton = document.querySelector('#chatbox');
+sendbutton.addEventListener('submit', sendmessage);
+var localusername= localStorage.getItem('username');
+if (localusername){
+  document.querySelector('#username-input').value="Hi there, "+localusername;
+}
+
+firebase.on('child_added', function (snapshot) {
+    var results = snapshot.val();
+      // for (var key in results) {
+      //   if (results.hasOwnProperty(key)) {
+//    debugger
+    var li = newTagText('li', messagelist)
+    var post = newTagText('div', li);
+    post.classList.add('post');
+    var p = newTagText('p', post, results['messageBody'])
+    p.classList.add('message')
+    var name = newTagText('span', post, results['username'])
+    name.classList.add('username')
+    var createdAt = new Date(results['createdAt']);
+    var date =newTagText('span', post, strftime('%a %l:%M %P', createdAt));
+    date.classList.add('timestamp')
+
+      //   }
+      //
+      // }
+//     console.log(results);
+});
+
+function sendmessage(event){
+  event.preventDefault()
+//  console.log(message);
+  if (!(localusername)){
+      localusername=prompt("what is your username");
+      localStorage.setItem("username", localusername)
+    };
+  firebase.push({
+      username: localusername,
+      messageBody: document.querySelector('#new-message').value,
+      createdAt: (new Date().getTime())
+    })}
+
+
+function storeusername(event) {
+    localStorage.setItem("username", document.querySelector('#username-input').value)
+}
+
+
+    </script>
+  </body>
+</html>
