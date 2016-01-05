@@ -30,20 +30,27 @@ function resultsReceived(results) {
  if (results['Search']) {
 
   for (var i = 0; i < results['Search'].length; i++) {
-    var li = newTagText('li', movielist);
-    li.classList.add("movie");
-    var div = newTagText('div', li);
-    div.classList.add("movie-title");
-    var a = newTagText('a', div,   results["Search"][i]["Title"]
-);
-     a.setAttribute("href",   results["Search"][i]["Poster"])
-     var div = newTagText('div', li, results["Search"][i]["Year"]);
-     div.classList.add("movie-release-date");
+    var movie=results["Search"][i];
+    createMovie(movie['Title'], movie["imdbID"], movie["Year"])
   };
 }
   else{
     alert("There no movies named anything close to what you typed, please try again.")
   };
+}
+
+function createMovie(movietitle, id, date) {
+  // body...
+  var li = $('<li>');
+  var title = $('<div>');
+  var url = "http://www.imdb.com/title/"+id;
+
+  li.appendTo('#movies').addClass("movie");
+
+  title.appendTo(li).addClass("movie-title");
+  $('<a>').text(movietitle).attr("href", url).appendTo(title);
+
+  $("<div>").text(date).addClass("movie-release-date").appendTo(li);
 
   // Access the first movie title
   // results["Search"][0]["Poster"]
