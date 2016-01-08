@@ -4,22 +4,38 @@ body{
 li{
   list-style: none;
   margin-bottom: 20px;
+  border-bottom: 1px solid #cccccc;
+
+}
+
+a{
+  text-decoration: none;
+background-color: darkgray;
+padding:3px;
+color: white;
+}
+
+a:hover{
+  border: 1px solid #cccccc;
+
 
 }
 .name{
   display: inline-block;
   width: 20%;
-  vertical-align: top;
+  margin: 20px;
+  font-size: 1.2em;
+
 }
 
 .statement{
   display: inline-block;
-  width: 60%;
+  width: 80%;
   margin-left: 20px;
+  padding: 20px;
 }
-.checkbox{
-  vertical-align: top;
-
+label{
+margin:20px;
 }
 
 .hide{

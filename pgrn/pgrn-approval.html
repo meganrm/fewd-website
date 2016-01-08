@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+
+
+
 <link rel="stylesheet" href="pgrn-approval.css" media="screen" title="no title" charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- <script src="DOMfunctions"></script> -->
@@ -11,17 +14,35 @@
 
 
 </script>
+
   </head>
   <body>
     <main>
       <form id="approval-form">
         <ul id="for-approval">
-          <li> Name </li>
+          <h2> Pending </h2>
           <!-- <li>
           <input type="checkbox" name="name" value="">
 
         </li> -->
         </ul>
+
+        <ul id="approved">
+          <h2>Approved</h2>
+          <!-- <li>
+          <input type="checkbox" name="name" value="">
+
+        </li> -->
+        </ul>
+
+        <ul id="rejected">
+          <h2>Rejected</h2>
+          <!-- <li>
+          <input type="checkbox" name="name" value="">
+
+        </li> -->
+        </ul>
+
       </form>
 
 
@@ -33,36 +54,62 @@
   for (var i = 0; i < responses['responses'].length; i++) {
     var answers = responses['responses']
     if (answers[i]['Q3_7_TEXT']){
-      appendtoList(answers[i]['Q3_7_TEXT'], answers[i]['Q4'])
+      appendtoList(answers[i]['Q3_7_TEXT'], answers[i]['Q4'], answers[i]['Q3_1_TEXT'])
   }
 }
 
-  function appendtoList(name, statement) {
+  function appendtoList(name, statement, useremail) {
     var item = $("<li>");
     item.addClass('person').appendTo("#for-approval");
     var form = $("<form>");
     form.attr("id", name).appendTo(item);
-
-    var button = $('<button>', {
-    class: 'checkbox',
-    id: name}
-  )
-    button.text("Approve").appendTo(form);
     $("<span>").addClass('name').text(name).appendTo(form)
+
+    var approvelabel=$("<label>");
+
+    var approve = $('<input>', {
+      type: 'radio',
+      value:"approve",
+      class: 'decide',
+      name:name}
+      )
+    approvelabel.text("Approve").appendTo(form);
+    approve.appendTo(approvelabel);
+
+    var rejectlabel=$("<label>");
+
+    var reject = $('<input>', {
+      type: 'radio',
+      value:"reject",
+      class: 'decide',
+      name:name}
+  )
+    rejectlabel.text("Reject").appendTo(form);
+    reject.appendTo(rejectlabel);
+
+    href="mailto:"+useremail;
+    var email = $('<a>');
+    email.addClass('email').attr("href", href).text("email applicant").appendTo(form);
+
     $("<span>").addClass('statement').text(statement).appendTo(form);
   }
-var checks= $(".checkbox")
+var checks= $(".decide")
 
 checks.on("click", function(event){
       event.preventDefault();
-      $(this).parent().addClass('hide');
-      for (var i = 0; i < responses['responses'].length; i++) {
-        if (responses['responses'][i]['Q3_7_TEXT']==this.id){
-          responses['responses'][i]['approved']=true;
-          console.log(responses['responses'][i]);
-        }
-      }
-      this.id;
+      if (this.value=='approve') {
+            $(this).closest('li').appendTo($('#approved'));
+}
+
+    else {
+      $(this).closest('li').appendTo($('#rejected'));
+
+    }
+      // for (var i = 0; i < responses['responses'].length; i++) {
+      //   if (responses['responses'][i]['Q3_7_TEXT']==this.id){
+      //     responses['responses'][i]['approved']=true;
+          // console.log(responses['responses'][i]);
+
 
 })
 
