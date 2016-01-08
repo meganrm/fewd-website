@@ -99,15 +99,25 @@
     $("<span>").addClass('statement').text(statement).appendTo(form);
   }
 var checks= $(".decide")
+var localusername= localStorage.getItem('username');
 
 checks.on("click", function(event){
       event.preventDefault();
+      if (!(localusername)){
+          localusername=prompt("what is your username");
+          localStorage.setItem("username", localusername)
+
+        };
+
       if (this.value=='approve') {
             $(this).closest('li').appendTo($('#approved'));
+            $("<span>").addClass('by').text('approved by '+localusername).appendTo($(this).closest('li'));
+
 }
 
     else {
       $(this).closest('li').appendTo($('#rejected'));
+      $("<span>").addClass('by').text('rejected by '+localusername).appendTo($(this).closest('li'));
 
     }
       // for (var i = 0; i < responses['responses'].length; i++) {
