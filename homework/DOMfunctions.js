@@ -14,11 +14,16 @@ function newTag(tagName, options) {
   }
 
 
-  function newTagjQuery(tagType, parent, text){
+  function newTagjQuery(tagType, parent, text, newclass){
     var elementName=$('<'+tagType+'>');
-    elementName.appendTo(parent);
-    elementName.text(text);
+    elementName.appendTo(parent).text(text).addClass(newclass);
     return elementName;
+  }
+
+  function newlistitem(listid, text, id) {
+    var li= newTagjQuery('li', listid, text);
+    li.attr(id);
+    return li;
   }
 
 
