@@ -14,10 +14,41 @@ var currentquery;
 //   }
 // }
 
-function animationli() {
-	$('.title').each(function(i) {
-	$(this).delay((i++) * 500).fadeTo(1000, 1); })
-};
+function checkDuplicate(name){
+  for (var i = 0; i < papers.nodes.length; i++) {
+    if (name==papers['nodes'][i]['name']){
+      return i
+    }
+    else{
+      return false
+    }
+  }
+}
+
+function findDuplicates(paperarray){
+  console.log(paperarray.nodes.length);
+  for (var i = 0; i < paperarray.nodes.length; i++) {
+    for (var k = i+1; k < paperarray.nodes.length; k++) {
+      if (paperarray['nodes'][i]['name']==paperarray['nodes'][k]['name']){
+          obj1keys= Object.keys(paperarray['nodes'][i])
+          obj2keys= Object.keys(paperarray['nodes'][k])
+          console.log(paperarray['nodes'][i]['name']+'='+paperarray['nodes'][k]['name']);
+          if (obj1keys.length>obj2keys.length) {
+            console.log('removing:'+k+'keeping:'+i);
+            papers.nodes.splice( k, 1 );
+          }
+          else{
+            console.log('removing:'+i+'keeping:'+k);
+
+            papers.nodes.splice( i, 1 );
+
+          }
+      }
+  }
+}
+console.log(papers.nodes.length);
+return paperarray
+}
 
 function findmin(array){
   var currentmin = 2016;
@@ -41,8 +72,14 @@ function newlistitem(listid, text, newclass, id) {
   return li;
 }
 
+var lookupiterator = 0
+var totalResults
+var stopPoint = 51
+
 function formSubmitted(event) {
   event.preventDefault();
+  $('li').remove()
+
   currentquery=$("#query").val()
   if (localStorage[currentquery]) {
     $("#scopus-search-form").addClass('hide')
@@ -50,7 +87,8 @@ function formSubmitted(event) {
     runViz(JSON.parse(localStorage.getItem(currentquery)))
   }
   else{
-  var url = "http://api.elsevier.com/content/search/scopus?apiKey=90fdd364d32fd8c87a35004ffa0d0fcf&query=" + $("#query").val();
+  var search=  $("#query").val().replace(/ /g, '%20')
+  var url = "http://api.elsevier.com/content/search/scopus?apiKey=90fdd364d32fd8c87a35004ffa0d0fcf&query=" + search;
  $.get("http://proxy.avandamiri.com/get?url=" + escape(url), resultsReceived)
 }
  };
@@ -64,6 +102,7 @@ function resultsReceived(results) {
   if (results['search-results']['entry']) {
     $("#scopus-search-form").addClass('hide')
     nodeid=nodeid+results['search-results']['entry'].length
+    totalResults=results['search-results']['opensearch:totalResults']
     for (var i = 0; i < results['search-results']['entry'].length; i++) {
       var paper = results['search-results']['entry'][i];
       var doi =paper['prism:doi'];
@@ -73,7 +112,7 @@ function resultsReceived(results) {
       var year= paper['prism:coverDate'];
       var date = year.split('-');
       var year = date[0]
-      console.log(paper['prism:publicationName']);
+      // console.log(paper['prism:publicationName']);
       var li = newlistitem('#titles', paper['dc:title'], 'title', doi);
       papers.nodes.push(
       {"name": paper['dc:title'],
@@ -84,6 +123,7 @@ function resultsReceived(results) {
       "doi":doi
         });
       if (doi) {
+        console.log('setting link:'+papers['nodes'][i]['link']);
         papers['nodes'][i]['link']="https://scholar.google.com/scholar?q="+escape(doi),
 
         lookupbyDoi(doi);
@@ -98,9 +138,21 @@ function resultsReceived(results) {
       }
 
     }
-    animateli()
   }
   else{alert("nothing was returned")};
+  console.log('hey there');
+  if (lookupiterator==0){  animateli()
+}
+  lookupiterator=lookupiterator+25
+
+  if (lookupiterator<stopPoint&&lookupiterator<totalResults) {
+    console.log('getting more papers:'+lookupiterator);
+    var search=  $("#query").val().replace(/ /g, '%20')
+
+    var url = "http://api.elsevier.com/content/search/scopus?apiKey=90fdd364d32fd8c87a35004ffa0d0fcf&query=" + search+ "&start="+lookupiterator;
+   $.get("http://proxy.avandamiri.com/get?url=" + escape(url), resultsReceived)
+
+  }
 
 
 }
@@ -144,15 +196,19 @@ function getcitations(results){
     }
     for (var i = 0; i < citationtitles.length; i++) {
       // console.log("paper looking up "+doi[0].textContent+", "+citationtitles[i].textContent);
+
       papers.nodes.push({"name":   citationtitles[i].textContent, "year": 1999, 'value': 3});
-      papers.links.push({"sourcedoi": doi[0].textContent, "target": papers.nodes.length-1, "value": 1});
+      papers.links.push({"sourcedoi": doi[0].textContent, "targetname": citationtitles[i].textContent, "value": 1});
+
       iterator = iterator+1
       // console.log(citationtitles[i]);
     }
-
-    if (iterator ==nodeid){
+    console.log('iterator:'+iterator+' '+'nodeid:'+nodeid);
+    if (iterator ==nodeid&& lookupiterator>stopPoint){
+      // findDuplicates()
       localStorage.setItem(currentquery, JSON.stringify(papers))
       $("#titles").addClass('hide')
+      console.log('running viz');
       runViz(papers)
     }
   };
