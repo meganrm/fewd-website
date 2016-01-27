@@ -1,11 +1,16 @@
 
 $("#scopus-search-form").submit(formSubmitted);
 
+// for (var i = 0; i < papers.nodes.length; i++) {
+//     if(papers['nodes'][i]['journal']&&(!papers['nodes'][i]['link'])){
+//       console.log(papers.nodes[i])
+//     }
+//   }
+
 var papers ={
   "nodes":[],
   "links":[]
 };
-var currentquery;
 
 // function animationli(ul){
 //   for (var i = 0; i < ul.length; i++) {
@@ -26,27 +31,30 @@ function checkDuplicate(name){
 }
 
 function findDuplicates(paperarray){
-  console.log(paperarray.nodes.length);
+  // console.log(paperarray.nodes.length);
   for (var i = 0; i < paperarray.nodes.length; i++) {
     for (var k = i+1; k < paperarray.nodes.length; k++) {
       if (paperarray['nodes'][i]['name']==paperarray['nodes'][k]['name']){
           obj1keys= Object.keys(paperarray['nodes'][i])
           obj2keys= Object.keys(paperarray['nodes'][k])
-          console.log(paperarray['nodes'][i]['name']+'='+paperarray['nodes'][k]['name']);
+          // console.log(paperarray['nodes'][i]['name']+'='+paperarray['nodes'][k]['name']);
           if (obj1keys.length>obj2keys.length) {
-            console.log('removing:'+k+'keeping:'+i);
-            papers.nodes.splice( k, 1 );
+            // console.log('removing:'+k+'keeping:'+i);
+            paperarray.nodes.splice( k, 1 );
+            // console.log(paperarray);
           }
           else{
-            console.log('removing:'+i+'keeping:'+k);
+            // console.log('removing:'+i+'keeping:'+k);
 
-            papers.nodes.splice( i, 1 );
+            paperarray.nodes.splice( i, 1 );
+            // console.log(paperarray);
+
 
           }
       }
   }
 }
-console.log(papers.nodes.length);
+// console.log(papers.nodes.length);
 return paperarray
 }
 
@@ -72,36 +80,37 @@ function newlistitem(listid, text, newclass, id) {
   return li;
 }
 
-var lookupiterator = 0
+var currentquery;
+
+//iterators
+var lookupiterator = 0 //number of nodes recieved
 var totalResults
-var stopPoint = 51
+var stopPoint = 1 //number of times to go through query loop
+var nodeid=0 //total nodes to lookup
 
 function formSubmitted(event) {
   event.preventDefault();
   $('li').remove()
-
   currentquery=$("#query").val()
-  if (localStorage[currentquery]) {
+  stopPoint=Number($("#iterator").val())*25+1
+  if (localStorage[currentquery]) { //check if already searched this term
     $("#scopus-search-form").addClass('hide')
-
     runViz(JSON.parse(localStorage.getItem(currentquery)))
+    }
+  else{//otherwise do a lookup with the current query
+    var search=  $("#query").val().replace(/ /g, '%20')
+    var url = "http://api.elsevier.com/content/search/scopus?apiKey=90fdd364d32fd8c87a35004ffa0d0fcf&query=" + search;
+    $.get("http://proxy.avandamiri.com/get?url=" + escape(url), resultsReceived)
   }
-  else{
-  var search=  $("#query").val().replace(/ /g, '%20')
-  var url = "http://api.elsevier.com/content/search/scopus?apiKey=90fdd364d32fd8c87a35004ffa0d0fcf&query=" + search;
- $.get("http://proxy.avandamiri.com/get?url=" + escape(url), resultsReceived)
-}
- };
+};
 
-var nodeid=0
 
 function resultsReceived(results) {
   event.preventDefault();
   $('ul').removeClass('hide')
-
   if (results['search-results']['entry']) {
     $("#scopus-search-form").addClass('hide')
-    nodeid=nodeid+results['search-results']['entry'].length
+    nodeid=nodeid+results['search-results']['entry'].length //update iterator stop point
     totalResults=results['search-results']['opensearch:totalResults']
     for (var i = 0; i < results['search-results']['entry'].length; i++) {
       var paper = results['search-results']['entry'][i];
@@ -119,49 +128,46 @@ function resultsReceived(results) {
       'journal': paper['prism:publicationName'],
       'scopusid':scopusid,
       "year": year,
+      'link': "https://scholar.google.com/scholar?q="+escape(doi),
       "value": paper['citedby-count'],
       "doi":doi
         });
-      if (doi) {
-        console.log('setting link:'+papers['nodes'][i]['link']);
-        papers['nodes'][i]['link']="https://scholar.google.com/scholar?q="+escape(doi),
-
-        lookupbyDoi(doi);
-
-      }
-      else {
+      // if (doi) {
+      //   papers['nodes'][i]['link']="https://scholar.google.com/scholar?q="+escape(doi),
+      //   console.log('setting link:'+papers['nodes'][i]['link']);
+      //
+      //   lookupbyDoi(doi);
+      //
+      // }
+      // else {
         // console.log("no doi");
-        papers['nodes'][i]['link']= "https://scholar.google.com/scholar?q="+escape(scopusid),
+        // papers['nodes'][i]['link']= "https://scholar.google.com/scholar?q="+escape(scopusid),
 
-        // console.log(paper);
+        console.log('setting scopus link:'+papers['nodes'][i]['link']);
         lookupbyScopus(scopusid);
-      }
+      // }
 
     }
   }
   else{alert("nothing was returned")};
   console.log('hey there');
-  if (lookupiterator==0){  animateli()
-}
-  lookupiterator=lookupiterator+25
 
+  if (lookupiterator==0){  animateli()//fix for double animation
+  }
+  lookupiterator=lookupiterator+25 //another round done
   if (lookupiterator<stopPoint&&lookupiterator<totalResults) {
     console.log('getting more papers:'+lookupiterator);
     var search=  $("#query").val().replace(/ /g, '%20')
-
     var url = "http://api.elsevier.com/content/search/scopus?apiKey=90fdd364d32fd8c87a35004ffa0d0fcf&query=" + search+ "&start="+lookupiterator;
    $.get("http://proxy.avandamiri.com/get?url=" + escape(url), resultsReceived)
-
   }
-
-
 }
 
 
 
-function lookupbyScopus(doi) {
+function lookupbyScopus(scopus) {
   // console.log("looupbydoi, "+doi);
-  var documentUrl =  "http://api.elsevier.com:80/content/article/scopus_id/"+doi+"?apiKey=90fdd364d32fd8c87a35004ffa0d0fcf&httpAccept=text/xml&view=FULL";
+  var documentUrl =  "http://api.elsevier.com:80/content/article/scopus_id/"+scopus+"?apiKey=90fdd364d32fd8c87a35004ffa0d0fcf&httpAccept=text/xml&view=FULL";
   // testfunction(documentUrl)
 $.get("http://proxy.avandamiri.com/get?url=" + documentUrl, getcitations)
 }
@@ -188,7 +194,7 @@ function getcitations(results){
     var doi = paper.find('doi');
     nodeid=nodeid+citationtitles.length
     // debugger
-    // console.log('getcitations', citationtitles.length);
+    console.log('getcitations', citationtitles.length, lookupiterator);
     iterator = iterator+1
 
     if (citationtitles.length==0) {
@@ -196,11 +202,9 @@ function getcitations(results){
     }
     for (var i = 0; i < citationtitles.length; i++) {
       // console.log("paper looking up "+doi[0].textContent+", "+citationtitles[i].textContent);
-
       papers.nodes.push({"name":   citationtitles[i].textContent, "year": 1999, 'value': 3});
       papers.links.push({"sourcedoi": doi[0].textContent, "targetname": citationtitles[i].textContent, "value": 1});
-
-      iterator = iterator+1
+      iterator++
       // console.log(citationtitles[i]);
     }
     console.log('iterator:'+iterator+' '+'nodeid:'+nodeid);
