@@ -12,6 +12,13 @@
       text-align: center;
       font-family: sans-serif;
     }
+
+    .maintitle{
+      margin-top: 60px;
+      color:coral;
+      font-size: 1.6em;
+    }
+
     .node {
         fill: #ccc;
     }
@@ -48,7 +55,7 @@
 
     }
     #scopus-search-form{
-      margin-top: 300px;
+      margin-top: 200px;
     }
     input{
       width: 220px;
@@ -58,7 +65,7 @@
     }
     #iterator{
       display: block;
-      margin-left: 385px;
+      margin:auto;
       width: 80px;
     }
 
@@ -104,6 +111,7 @@
   </head>
   <body>
     <main>
+      <h4 class='maintitle' id='welcome'>Visual Scientific Literature Search</h4>
       <form id="scopus-search-form">
         <input type="text" id="query" placeholder="search scopus">
         <button class='button'  id='search-button' type="submit">Search</button>
@@ -117,7 +125,7 @@
       </form>
       <div class="returned-titles">
         <ul class='hide' id= 'titles'>
-          <h2>Please wait while we retrieve your search results</h2>
+          <h4 class= 'maintitle'>Please wait while we retrieve your search results</h4>
         </ul>
       </div>
 
@@ -185,7 +193,7 @@ function runViz(paperarray){
   $('#new-search').removeClass('hide')
 
   var width = 900,
-   height = 600;
+   height = 500;
 
    var color = d3.scale.category20();
 

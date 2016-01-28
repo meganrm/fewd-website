@@ -88,13 +88,18 @@ var totalResults
 var stopPoint = 1 //number of times to go through query loop
 var nodeid=0 //total nodes to lookup
 
+
+//inital lookup based on user query
 function formSubmitted(event) {
   event.preventDefault();
   $('li').remove()
+  $("#welcome").addClass('hide')
+
   currentquery=$("#query").val()
   stopPoint=Number($("#iterator").val())*25+1
   if (localStorage[currentquery]) { //check if already searched this term
     $("#scopus-search-form").addClass('hide')
+
     runViz(JSON.parse(localStorage.getItem(currentquery)))
     }
   else{//otherwise do a lookup with the current query
@@ -104,7 +109,7 @@ function formSubmitted(event) {
   }
 };
 
-
+//result of get(), called recursively 
 function resultsReceived(results) {
   event.preventDefault();
   $('ul').removeClass('hide')
