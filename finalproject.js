@@ -109,7 +109,7 @@ function formSubmitted(event) {
   }
 };
 
-//result of get(), called recursively 
+//result of get(), called recursively
 function resultsReceived(results) {
   event.preventDefault();
   $('ul').removeClass('hide')
@@ -202,9 +202,7 @@ function getcitations(results){
     console.log('getcitations', citationtitles.length, lookupiterator);
     iterator = iterator+1
 
-    if (citationtitles.length==0) {
-      // console.log(results);
-    }
+
     for (var i = 0; i < citationtitles.length; i++) {
       // console.log("paper looking up "+doi[0].textContent+", "+citationtitles[i].textContent);
       papers.nodes.push({"name":   citationtitles[i].textContent, "year": 1999, 'value': 3});
