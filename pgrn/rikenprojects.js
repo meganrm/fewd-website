@@ -5,109 +5,109 @@ var projects=
 {title:'Pharmacogenomics of Aromatase Inhibitors',
  samples: 830,
  pis: ['J. Ingle, R. Weinshilboum, M. Kubo'],
- group: 'cancer'
+ group: 'Cancer'
  },
 
 {title: 'Gemcitabine and Bevacizumab for Pancreatic Cancer',
 samples: 352,
 pis: ['F. Innocenti, N. Cox, K. Owzar, H. Kindler, K. Giacomini, H. McLeod, M. Ratain, Y. Nakamura'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Aromatase Inhibitors for Breast Cancer w/ MA-27',
 samples: 1688,
 pis: ['J. Ingle, R. Weinshilboum, D. Flockhart, V. Stearns, T. Mushiroda'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Cyclophosphamide and Doxorubicin/Paclitaxel for Breast Cancer',
 samples: 1984,
 pis: ['D.L. Kroetz, E. Jorgenson, K. Owzar, J. Witte, L. Shulman, H. McLeod, M. Ratain, H. Zembutsu'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Docetaxel/Prednisone/Bevacizumab Addition to Prostate Cancer Therapy',
 samples: 835,
 pis: ['H.  McLeod, M.J. Ratain, D.L. Kroetz, Kelly, K. Ozwar, N.J.Cox, Motsinger-Rief, Zembutsu'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Tamoxifen/Raloxifene Adjuvant to Treat Breast Cancer NSABP',
 samples: 1848,
 pis: ['J. Ingle, Wickerham, D. Schaid, Costantino, Vogel, Paik, P. Goetz, D. Flockhart, Wolmark, R. Weinshilboum, Zembutsu'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Celecoxib Effectiveness for Colorectal Cancer',
 samples: 1660,
 pis: ['M. Bertagnolli, S. Weiss, J. Su, M. Ratain, K. Owzar, K. Matsuda'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Busulfan-Based Chemotherapy and Acute Myelogenous Leukemia',
 samples: 328,
 pis: ['C. Andreadis, K. Giacomini, S. W. Yee, J. Witte, L. Johnston, S. Baker, M. Relling, M. Baer, D. Kroetz, K. Matsuda'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Aromatase Inhibitors and Bone Fractures',
 samples: 1848,
 pis: ['P. Goss, D. Schaid, J.-A. Chapman, S. Khosla, L. Shepherd, M. Ellis, V. Stearns, D. Flockhart, R. Weinshilboum, J. Ingle, H. Zembutsu'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Colorectal Cancer Pharmacogenetics',
 samples: 1000,
 pis: ['H. McLeod, K. Owzar, M. Ratain, A. Venook, P.N. Friedman, M. Bertagnolli, H. Zembutsu.'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Patients Experiencing Breast Events While Receiving Aromatase Inhibitors for Early Breast Cancer',
 samples: 270,
 pis: ['M.J. Ellis, J.N. Ingle, P.E. Goss, D.J. Schaid, J-A. Chapman, L. Shepherd, R.M. Weinshilboum, M. Kubo.'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Addition of bevacizumab to standard carboplatin-paclitaxel chemotherapy ced ovarian cancer.',
 samples: 492,
 pis: ['G. Liu, H. Mackay, W. Xu, A. Oza, K. Matsuda.'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Genome-Wide Association Study in Patients Receiving Neoadjuvant Chemotherapy with or without Bevacizumab on NSABP B40',
 samples: 1114,
 pis: ['J. Ingle, Dr. Y. Furukawa'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Colorectal Cancer Pharmacogenetics (Phase II)',
 samples: 633,
 pis: ['F. Innocentti, Furukawa, K. Owzar'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Pharmacogenetic Analysis of Cetuximab (CO.20 Trial)',
 samples: 664,
 pis: ['G. Liu, T. Mushiroda, Matsuda'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Sequencing Across GWAS Signals Relating to Musculoskeletal Adverse Events in Women Receiving Aromatase Inhibitors for Adjuvant Therapy of Early Breast Cancer (MA.27)',
 samples: 912,
 pis: ['J.S. Ingle, T. Mushiroda'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Pharmacogenetic Predictors of Peripheral Neuropathy Associated with Microtubule Targeting Drugs',
  samples: 651,
 pis: ['D.L. Kroetz, T. Mushiroda'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Polygenic modeling of chemotherapy-induced peripheral neurotoxicity and ototoxicity',
 samples: 1244,
 pis: ['E. Dolan, T. Mushiroda'],
-group: 'cancer'
+group: 'Cancer'
 },
 
 {title: 'Sequencing Across GWAS Signals Relating to Breast Events in Women Receiving Aromatase Inhibitors for Adjuvant Therapy of Early Breast Cancer (MA.27)',
@@ -150,6 +150,8 @@ group: 'Cardiovascular Disease'
 {title: 'International Clopidogrel Pharmacogenomics Consortium (ICPC) Genome-wide Association',
 samples: 3000,
 pis: ['A. Shuldiner, T. Mushiroda'],
+group: 'Cardiovascular Disease'
+
 },
 
 

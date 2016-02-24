@@ -11,10 +11,22 @@
   stroke: #999;
   stroke-opacity: .6;
 }
-
+.info{
+  margin: 30px
+}
 </style>
 <body>
+  <div class="info">
+    The size of the circle corresponds to the approximate number of samples in each study. The lines between the circles represent shared PIs.
+    Click on a cirlce to see the name of the project.
+  </div>
+  <div class="viz">
+  </div>
+
   <div class="displaylink">
+  </div>
+
+    <div class="legend">
 
   </div>
 </body>
@@ -88,7 +100,7 @@ function runViz(projects){
 
 
 
-var svg = d3.select('body').append('svg')
+var svg = d3.select('.viz').append('svg')
     .attr('width', width)
     .attr('height', height);
 
@@ -120,7 +132,7 @@ var node = svg.selectAll('.node')
     .enter().append('circle')
     .attr('class', 'node')
 
-    .text(function(d) {return d.title})
+    .text(function(d) {return d.title + '. '+d.pis})
 
     .style("fill", function(d) { return color(d.group); })
 
@@ -145,7 +157,24 @@ force.on('tick', function() {
 
 
 
+      var legend = svg.selectAll(".legend")
+          .data(color.domain())
+          .enter().append("g")
+          .attr("class", "legend")
+          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
+      legend.append("rect")
+          .attr("x", width - 18)
+          .attr("width", 18)
+          .attr("height", 18)
+          .style("fill", color);
+
+      legend.append("text")
+          .attr("x", width - 24)
+          .attr("y", 9)
+          .attr("dy", ".35em")
+          .style("text-anchor", "end")
+          .text(function(d) { return d; });
 
 
 
