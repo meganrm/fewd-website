@@ -23,11 +23,12 @@ var tablebody=$('<tbody>');
 
 function maketable() {
   event.preventDefault();
+  removerows()
   for (var i = 0; i < responses.responses.length; i++) {
   var array = responses.responses[i];
   var newer=false;
   if (array['Q18_1_TEXT']){
-    var name = array['Q18_2_TEXT']+', '+array['Q18_1_TEXT'];
+    var name = array['Q18_1_TEXT']+', '+array['Q18_2_TEXT'];
     newer=true;
   }
   else{
@@ -53,6 +54,7 @@ function maketable() {
         var col1= newtablecolumn(row, 'approved', 'approved', true)
         var col1= newtablecolumn(row, names[1], names[1], true, 'firstname')
         var col1= newtablecolumn(row, names[0], names[0], true, 'lastname')
+        var col1= newtablecolumn(row, name, name, false, 'lastname')
         var col2= newtablecolumn(row, array['Q3_1_TEXT'], array['Q3_1_TEXT'], true, "email")
         var col3= newtablecolumn(row, array['Q3_2_TEXT'], array['Q3_2_TEXT'], true, "phone")
         if (newer){
@@ -62,6 +64,8 @@ function maketable() {
         }
         else{
           var col4= newtablecolumn(row, array['Q3_3_TEXT'], array['Q3_3_TEXT'], true, "address")
+          var col4= newtablecolumn(row, '', '', true, "state")
+          var col4= newtablecolumn(row, '', '', true, "country")
         }
         var col5= newtablecolumn(row, array['Q3_4_TEXT'], array['Q3_4_TEXT'], true, "title")
         var col6= newtablecolumn(row, array['Q4'], array['Q4'], true)
@@ -115,6 +119,13 @@ function checkfirstname(name){
     return fullname[1]+', '+fullname[0]
   }
   else return name;
+}
+
+function removerows(){
+  rows=$('tr')
+  for (var i = 1; i < rows.length; i++) {
+    $(rows[i]).remove()
+  }
 }
 
 function allAnswers(question, obj){

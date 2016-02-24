@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+</style>
+<body>
+  <div class="displaylink">
+
+  </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="rikenprojects.js"></script>
+
+<script>
+
+function newTagjQuery(tagType, parent, text, newclass){
+  var elementName=$('<'+tagType+'>');
+  elementName.appendTo(parent).text(text).addClass(newclass);
+  return elementName;
+}
+
+function newlistitem(listid, text, newclass, id) {
+  var li= newTagjQuery('li', listid, text, newclass);
+  li.attr('id', id);
+  return li;
+}
+
+var authors = []
+
+function makeauthors(nodes){
+  for (var i = 0; i < projects.nodes.length; i++) {
+    projects.nodes[i].pis= projects.nodes[i].pis[0].split(',')
+
+    array = projects.nodes[i].pis
+    for (var k = 0; k < array.length; k++) {
+      author = {}
+      author['index']= i,
+      author['name']=array[k]
+      authors.push(author)
+    }
+  }
+  makelinks()
+}
+
+function makelinks() {
+  for (var i = 0; i < authors.length; i++) {
+    for (var k = 0; k < authors.length; k++) {
+      if (authors[i].name == authors[k].name){
+        source= authors[i].index
+        target= authors[k].index
+
+        if (source!=target) {
+          link={}
+          link['source']=source
+          link['target']=target;
+          link['name']=authors[k].name;
+          projects.links.push(link)
+    }}
+  }
+
+}}
+
+
+function runViz(projects){
+
+  var width = 900,
+   height = 500;
+
+   var color = d3.scale.category20();
+
+
+  makeauthors(projects)
+  var links = projects.links;
+  var nodes = projects.nodes;
+
+
+
+var svg = d3.select('body').append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+var force = d3.layout.force()
+    .nodes(nodes)
+    .links(links)
+    .size([width, height])
+    .linkStrength(0.1)
+    .friction(0.9)
+    .linkDistance(60)
+    .charge(function(d) {return -5*Math.sqrt(Number(d.samples)/3.14)})
+    .gravity(0.1)
+    .theta(0.8)
+    .alpha(0.1);
+
+
+
+
+
+var link = svg.selectAll('.link')
+    .data(links)
+    .enter().append('line')
+    .attr('class', 'link');
+
+// Now it's the nodes turn. Each node is drawn as a circle.
+
+var node = svg.selectAll('.node')
+    .data(nodes)
+    .enter().append('circle')
+    .attr('class', 'node')
+
+    .text(function(d) {return d.title})
+
+    .style("fill", function(d) { return color(d.group); })
+
+    .call(force.drag);
+;
+
+
+force.on('tick', function() {
+
+  node.attr("cx", function(d) { return d.x; })
+  .attr("cy", function(d) {return d.y; })
+  .attr("weight", function(d) {return Math.sqrt(Number(d.samples)/3.14); })
+
+  // .attr('fixed', function(d){return d.fixed=true})
+  .attr("r", function(d) {return 0.5*Math.sqrt(Number(d.samples)/3.14);});
+//
+
+  link.attr('x1', function(d) { return d.source.x; })
+      .attr('y1', function(d) { return d.source.y; })
+      .attr('x2', function(d) { return d.target.x; })
+      .attr('y2', function(d) { return d.target.y; });
+
+
+
+
+
+
+
+});
+
+force.start();
+
+svg.selectAll("circle.node").on("click", function(d){
+          $('a').remove()
+           var element= d3.select(this)
+           var anchor = newTagjQuery('a', '.displaylink', element.text())
+//           anchor.attr('href', element.attr('href')).attr('target', 'blank')
+              //   .attr('r', 25)
+              //  .style("fill","lightcoral")
+              //  .style("stroke","red");
+       });
+}
+
+
+
+</script>
