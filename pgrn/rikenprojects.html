@@ -14,6 +14,17 @@
 .info{
   margin: 30px
 }
+.displaylink{
+  text-align: center;
+}
+.title-authors{
+  list-style: none
+}
+
+.title{
+  font-size: 1.3em;
+}
+
 </style>
 <body>
   <div class="info">
@@ -24,6 +35,9 @@
   </div>
 
   <div class="displaylink">
+    <ul class= 'title-authors'>
+
+    </ul>
   </div>
 
     <div class="legend">
@@ -82,115 +96,122 @@ function makelinks() {
           projects.links.push(link)
     }}
   }
-
-}}
-
+}
+}
 
 function runViz(projects){
 
-  var width = 900,
-   height = 500;
-
-   var color = d3.scale.category20();
-
+  var width = 900, height = 500;
+  var color = d3.scale.category20();
 
   makeauthors(projects)
   var links = projects.links;
   var nodes = projects.nodes;
 
 
+  var svg = d3.select('.viz').append('svg')
+      .attr('width', width)
+      .attr('height', height);
 
-var svg = d3.select('.viz').append('svg')
-    .attr('width', width)
-    .attr('height', height);
-
-var force = d3.layout.force()
-    .nodes(nodes)
-    .links(links)
-    .size([width, height])
-    .linkStrength(0.1)
-    .friction(0.9)
-    .linkDistance(60)
-    .charge(function(d) {return -5*Math.sqrt(Number(d.samples)/3.14)})
-    .gravity(0.1)
-    .theta(0.8)
-    .alpha(0.1);
-
+  var force = d3.layout.force()
+      .nodes(nodes)
+      .links(links)
+      .size([width, height])
+      .linkStrength(0.1)
+      .friction(0.9)
+      .linkDistance(60)
+      .charge(function(d) {return -5*Math.sqrt(Number(d.samples)/3.14)})
+      .gravity(0.1)
+      .theta(0.8)
+      .alpha(0.1);
 
 
 
 
-var link = svg.selectAll('.link')
-    .data(links)
-    .enter().append('line')
-    .attr('class', 'link');
+
+  var link = svg.selectAll('.link')
+      .data(links)
+      .enter().append('line')
+      .attr('class', 'link');
 
 // Now it's the nodes turn. Each node is drawn as a circle.
 
-var node = svg.selectAll('.node')
-    .data(nodes)
-    .enter().append('circle')
-    .attr('class', 'node')
-
-    .text(function(d) {return d.title + '. '+d.pis})
-
-    .style("fill", function(d) { return color(d.group); })
-
-    .call(force.drag);
-;
+  var node = svg.selectAll('.node')
+      .data(nodes)
+      .enter().append('circle')
+      .attr('class', 'node')
+      .text(function(d) {return d.title + ':'+d.pis})
+      .style("fill", function(d) { return color(d.group); })
+      .call(force.drag);
 
 
-force.on('tick', function() {
+ force.on('tick', function() {
+      node.attr("cx", function(d) { return d.x; })
+          .attr("cy", function(d) {return d.y; })
+          .attr("weight", function(d) {return Math.sqrt(Number(d.samples)/3.14); })
+          .attr("r", function(d) {return 0.5*Math.sqrt(Number(d.samples)/3.14);});
+    //
 
-  node.attr("cx", function(d) { return d.x; })
-  .attr("cy", function(d) {return d.y; })
-  .attr("weight", function(d) {return Math.sqrt(Number(d.samples)/3.14); })
-
-  // .attr('fixed', function(d){return d.fixed=true})
-  .attr("r", function(d) {return 0.5*Math.sqrt(Number(d.samples)/3.14);});
-//
-
-  link.attr('x1', function(d) { return d.source.x; })
-      .attr('y1', function(d) { return d.source.y; })
-      .attr('x2', function(d) { return d.target.x; })
-      .attr('y2', function(d) { return d.target.y; });
+      link.attr('x1', function(d) { return d.source.x; })
+          .attr('y1', function(d) { return d.source.y; })
+          .attr('x2', function(d) { return d.target.x; })
+          .attr('y2', function(d) { return d.target.y; });
 
 
 
-      var legend = svg.selectAll(".legend")
-          .data(color.domain())
-          .enter().append("g")
-          .attr("class", "legend")
-          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-      legend.append("rect")
-          .attr("x", width - 18)
-          .attr("width", 18)
-          .attr("height", 18)
-          .style("fill", color);
-
-      legend.append("text")
-          .attr("x", width - 24)
-          .attr("y", 9)
-          .attr("dy", ".35em")
-          .style("text-anchor", "end")
-          .text(function(d) { return d; });
 
 
 
 });
 
-force.start();
 
-svg.selectAll("circle.node").on("click", function(d){
-          $('a').remove()
-           var element= d3.select(this)
-           var anchor = newTagjQuery('a', '.displaylink', element.text())
+  var legend = svg.selectAll(".legend")
+      .data(color.domain())
+      .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  legend.append("rect")
+        .attr("x", width - 18)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", color);
+
+  legend.append("text")
+        .attr("x", width - 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "end")
+        .style("color", color)
+        .text(function(d) { return d; });
+
+  force.start();
+
+  svg.selectAll("circle.node").on("click", function(d){
+            $('li').remove()
+             var element= d3.select(this)
+             var titles= element.text().split(':')
+
+             var titletext =  newlistitem('.title-authors', titles[0], 'title')
+             var authtext = newlistitem('.title-authors', titles[1], 'authors' )
+
 //           anchor.attr('href', element.attr('href')).attr('target', 'blank')
               //   .attr('r', 25)
               //  .style("fill","lightcoral")
-              //  .style("stroke","red");
+              //  element.style("stroke","red");
        });
+    resize();
+    d3.select(window).on("resize", resize);
+    function resize() {
+          width = window.innerWidth-60, height = window.innerHeight-200;
+          svg.attr("width", width).attr("height", height);
+          force.size([width, height]).resume();
+          leg = d3.selectAll('text')
+          leg.attr("x", width - 24)
+          leg = d3.selectAll('rect')
+          leg.attr("x", width - 18)
+           }
+
 }
 
 runViz(projects)

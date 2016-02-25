@@ -28,7 +28,7 @@ group: 'Cancer'
 
 {title: 'Docetaxel/Prednisone/Bevacizumab Addition to Prostate Cancer Therapy',
 samples: 835,
-pis: ['H.  McLeod, M.J. Ratain, D.L. Kroetz, Kelly, K. Ozwar, N.J.Cox, Motsinger-Rief, Zembutsu'],
+pis: ['H. McLeod, M.J. Ratain, D.L. Kroetz, Kelly, K. Ozwar, N.J.Cox, Motsinger-Rief, Zembutsu'],
 group: 'Cancer'
 },
 
@@ -46,7 +46,7 @@ group: 'Cancer'
 
 {title: 'Busulfan-Based Chemotherapy and Acute Myelogenous Leukemia',
 samples: 328,
-pis: ['C. Andreadis, K. Giacomini, S. W. Yee, J. Witte, L. Johnston, S. Baker, M. Relling, M. Baer, D. Kroetz, K. Matsuda'],
+pis: ['C. Andreadis, K.M. Giacomini, S. W. Yee, J. Witte, L. Johnston, S. Baker, M. Relling, M. Baer, D. Kroetz, K. Matsuda'],
 group: 'Cancer'
 },
 
@@ -76,13 +76,13 @@ group: 'Cancer'
 
 {title: 'Genome-Wide Association Study in Patients Receiving Neoadjuvant Chemotherapy with or without Bevacizumab on NSABP B40',
 samples: 1114,
-pis: ['J. Ingle, Dr. Y. Furukawa'],
+pis: ['J. Ingle, Y. Furukawa'],
 group: 'Cancer'
 },
 
 {title: 'Colorectal Cancer Pharmacogenetics (Phase II)',
 samples: 633,
-pis: ['F. Innocentti, Furukawa, K. Owzar'],
+pis: ['F. Innocentti, Y. Furukawa, K. Owzar'],
 group: 'Cancer'
 },
 
@@ -157,7 +157,7 @@ group: 'Cardiovascular Disease'
 
 {title: 'Genetic Determinants of Clinical Cardiovascular Events in Patients Receiving Statins',
  samples: 6066,
-pis: ['R.M. Krauss, D.M. Roden, J. Denny, W-Q.Wei, C.M.Stein, C. Ingram, Q. Feng, X.Li, J.I. Rotter, M. Kubo'],
+pis: ['R.M. Krauss, D.M. Roden, J. Denny, W-Q.Wei, C.M. Stein, C. Ingram, Q. Feng, X.Li, J.I. Rotter, M. Kubo'],
 group: 'Cardiovascular Disease'
 
 },
@@ -197,7 +197,7 @@ group: 'Inflammatory Disease'
 // Neuropsychiatry Disease
 {title: 'Citalopram and Escitalopram for Depression',
  samples: 500,
-pis: ['D. Mrazek, C. Schaefer, D. Schaid, K. Giacomini, and R. Weinshilboum, T. Mushiroda'],
+pis: ['D. Mrazek, C. Schaefer, D. Schaid, K.M. Giacomini, and R. Weinshilboum, T. Mushiroda'],
 group: 'Neuropsychiatry Disease'
 },
 
