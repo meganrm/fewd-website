@@ -10,7 +10,7 @@ var projects=
 
 {title: 'Gemcitabine and Bevacizumab for Pancreatic Cancer',
 samples: 352,
-pis: ['F. Innocenti, N. Cox, K. Owzar, H. Kindler, K. Giacomini, H. McLeod, M. Ratain, Y. Nakamura'],
+pis: ['F. Innocenti, N. Cox, K. Owzar, H. Kindler, K.M. Giacomini, H. McLeod, M.J. Ratain, Y. Nakamura'],
 group: 'Cancer'
 },
 
@@ -22,7 +22,7 @@ group: 'Cancer'
 
 {title: 'Cyclophosphamide and Doxorubicin/Paclitaxel for Breast Cancer',
 samples: 1984,
-pis: ['D.L. Kroetz, E. Jorgenson, K. Owzar, J. Witte, L. Shulman, H. McLeod, M. Ratain, H. Zembutsu'],
+pis: ['D.L. Kroetz, E. Jorgenson, K. Owzar, J. Witte, L. Shulman, H. McLeod, M.J. Ratain, H. Zembutsu'],
 group: 'Cancer'
 },
 
@@ -40,7 +40,7 @@ group: 'Cancer'
 
 {title: 'Celecoxib Effectiveness for Colorectal Cancer',
 samples: 1660,
-pis: ['M. Bertagnolli, S. Weiss, J. Su, M. Ratain, K. Owzar, K. Matsuda'],
+pis: ['M. Bertagnolli, S. Weiss, J. Su, M.J. Ratain, K. Owzar, K. Matsuda'],
 group: 'Cancer'
 },
 
@@ -52,19 +52,19 @@ group: 'Cancer'
 
 {title: 'Aromatase Inhibitors and Bone Fractures',
 samples: 1848,
-pis: ['P. Goss, D. Schaid, J.-A. Chapman, S. Khosla, L. Shepherd, M. Ellis, V. Stearns, D. Flockhart, R. Weinshilboum, J. Ingle, H. Zembutsu'],
+pis: ['P. Goss, D. Schaid, J-A. Chapman, S. Khosla, L. Shepherd, M. Ellis, V. Stearns, D. Flockhart, R. Weinshilboum, J. Ingle, H. Zembutsu'],
 group: 'Cancer'
 },
 
 {title: 'Colorectal Cancer Pharmacogenetics',
 samples: 1000,
-pis: ['H. McLeod, K. Owzar, M. Ratain, A. Venook, P.N. Friedman, M. Bertagnolli, H. Zembutsu.'],
+pis: ['H. McLeod, K. Owzar, M.J. Ratain, A. Venook, P.N. Friedman, M. Bertagnolli, H. Zembutsu.'],
 group: 'Cancer'
 },
 
 {title: 'Patients Experiencing Breast Events While Receiving Aromatase Inhibitors for Early Breast Cancer',
 samples: 270,
-pis: ['M.J. Ellis, J.N. Ingle, P.E. Goss, D.J. Schaid, J-A. Chapman, L. Shepherd, R.M. Weinshilboum, M. Kubo.'],
+pis: ['M.J. Ellis, J.N Ingle, P.E. Goss, D.J. Schaid, J-A. Chapman, L. Shepherd, R. Weinshilboum, M. Kubo'],
 group: 'Cancer'
 },
 
@@ -203,7 +203,7 @@ group: 'Neuropsychiatry Disease'
 
 {title: 'SSRIs and Depression-European Consortium',
 samples: 2000,
-pis: ['D. Mrazek, J. Kirchheiner, T. Klein, D. Schaid, R. Altman, K. Giacomini, R. Weinshilboum, T. Mushiroda'],
+pis: ['D. Mrazek, J. Kirchheiner, T. Klein, D. Schaid, R. Altman, K.M. Giacomini, R. Weinshilboum, T. Mushiroda'],
 group: 'Neuropsychiatry Disease'
 },
 

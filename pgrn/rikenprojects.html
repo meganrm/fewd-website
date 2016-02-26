@@ -12,37 +12,66 @@
   stroke-opacity: .6;
 }
 .info{
-  margin: 30px
+  margin: auto;
+  width: 200px;
+  position: fixed;
+  right:20px;
+  bottom:140px;
+  text-align: right;
+  margin-right: 50px;
 }
+
 .displaylink{
   text-align: center;
+  height: 60px;
 }
 .title-authors{
   list-style: none
+}
+.viz{
 }
 
 .title{
   font-size: 1.3em;
 }
+.projects{
+  background-color: rgb(60,83,97);
+  color: white;
+}
+
+.projecttitle{
+  text-align: center;
+  padding: 10px;
+}
 
 </style>
 <body>
-  <div class="info">
-    The size of the circle corresponds to the approximate number of samples in each study. The lines between the circles represent shared PIs.
-    Click on a circle to see the name of the project.
-  </div>
-  <div class="viz">
-  </div>
-
+  <div class="projects">
+  <h2 class='projecttitle'>PGRN-RIKEN Projects</h2>
   <div class="displaylink">
     <ul class= 'title-authors'>
 
     </ul>
   </div>
 
+  <div class="viz">
+  </div>
+
+
+
     <div class="legend">
 
   </div>
+  <div class="info">
+    <p>
+
+    The size of the circle corresponds to the approximate number of samples in each study. The lines between the circles represent shared PIs.
+    Click on a circle to see the name of the project.
+  </p>
+
+  </div>
+</div>
+
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
@@ -182,7 +211,7 @@ function runViz(projects){
         .attr("y", 9)
         .attr("dy", ".35em")
         .style("text-anchor", "end")
-        .style("color", color)
+        .style("fill", 'white')
         .text(function(d) { return d; });
 
   force.start();
@@ -203,7 +232,7 @@ function runViz(projects){
     resize();
     d3.select(window).on("resize", resize);
     function resize() {
-          width = window.innerWidth-60, height = window.innerHeight-200;
+          width = window.innerWidth-80, height = window.innerHeight-200;
           svg.attr("width", width).attr("height", height);
           force.size([width, height]).resume();
           leg = d3.selectAll('text')
