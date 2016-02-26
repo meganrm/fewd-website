@@ -38,6 +38,7 @@
   background-color: rgb(60,83,97);
   color: white;
   position: relative;
+  min-height: 520px;
 }
 
 .projecttitle{
@@ -131,7 +132,7 @@ function makelinks() {
 
 function runViz(projects){
 
-  var width = 900, height = 500;
+  var width = 900, height = 400;
   var color = d3.scale.category20();
 
   makeauthors(projects)
@@ -233,7 +234,7 @@ function runViz(projects){
     resize();
     d3.select(window).on("resize", resize);
     function resize() {
-          width = window.innerWidth-80, height = window.innerHeight-200;
+          width = window.innerWidth-80 //, height = window.innerHeight-200;
           svg.attr("width", width).attr("height", height);
           force.size([width, height]).resume();
           leg = d3.selectAll('text')
