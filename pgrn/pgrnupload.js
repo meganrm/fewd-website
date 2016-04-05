@@ -52,28 +52,29 @@ function maketable() {
         var resourceList = allAnswers("Q15", array);
         var row= newtablerow('#for-approval', displayname)
         var col1= newtablecolumn(row, 'approved', 'approved', true)
-        var col1= newtablecolumn(row, names[1], names[1], true, 'firstname')
-        var col1= newtablecolumn(row, names[0], names[0], true, 'lastname')
-        var col1= newtablecolumn(row, name, name, false, 'lastname')
-        var col2= newtablecolumn(row, array['Q3_1_TEXT'], array['Q3_1_TEXT'], true, "email")
-        var col3= newtablecolumn(row, array['Q3_2_TEXT'], array['Q3_2_TEXT'], true, "phone")
+        var col2= newtablecolumn(row, names[1], names[1], true, 'firstname')
+        var col3= newtablecolumn(row, names[0], names[0], true, 'lastname')
+        var col4= newtablecolumn(row, name, name, false, 'lastname')
+        var col5= newtablecolumn(row, array['Q3_1_TEXT'], array['Q3_1_TEXT'], true, "email")
+        var col6= newtablecolumn(row, array['Q3_2_TEXT'], array['Q3_2_TEXT'], true, "phone")
         if (newer){
-          var col4= newtablecolumn(row, array['Q3_13_TEXT'], array['Q3_13_TEXT'], true, "address")
-          var col4= newtablecolumn(row, array['Q3_14_TEXT'], array['Q3_14_TEXT'], true, "state")
-          var col4= newtablecolumn(row, array['Q3_3_TEXT'], array['Q3_3_TEXT'], true, "country")
+          var col7= newtablecolumn(row, array['Q3_13_TEXT'], array['Q3_13_TEXT'], true, "address")
+          var col8= newtablecolumn(row, array['Q3_14_TEXT'], array['Q3_14_TEXT'], true, "state")
+          var col9= newtablecolumn(row, array['Q3_3_TEXT'], array['Q3_3_TEXT'], true, "country")
         }
         else{
-          var col4= newtablecolumn(row, array['Q3_3_TEXT'], array['Q3_3_TEXT'], true, "address")
-          var col4= newtablecolumn(row, '', '', true, "state")
-          var col4= newtablecolumn(row, '', '', true, "country")
+          var col7= newtablecolumn(row, array['Q3_3_TEXT'], array['Q3_3_TEXT'], true, "address")
+          var col8= newtablecolumn(row, '', '', true, "state")
+          var col9= newtablecolumn(row, '', '', true, "country")
         }
-        var col5= newtablecolumn(row, array['Q3_4_TEXT'], array['Q3_4_TEXT'], true, "title")
-        var col6= newtablecolumn(row, array['Q4'], array['Q4'], true)
-        var col7= newtablecolumn(row, array['Q3_5_TEXT'], array['Q3_5_TEXT'], true,   "intitution")
-        var col8= newtablecolumn(row, array['Q6'], array['Q6'], true, "other")
-        var col9= newtablecolumn(row, dieaseList.join(', '), dieaseList.join(', '), true, "dieases")
-        var col10= newtablecolumn(row, expertiseList.join(', '), expertiseList.join(', '), true, "expertise")
-        var col11= newtablecolumn(row, resourceList.join(', '), resourceList.join(', '), true, "resources")
+        var col10= newtablecolumn(row, array['Q3_4_TEXT'], array['Q3_4_TEXT'], true, "title")
+        var col11= newtablecolumn(row, array['Q4'], array['Q4'], true)
+        var col12= newtablecolumn(row, array['Q3_5_TEXT'], array['Q3_5_TEXT'], true,   "intitution")
+        var col13= newtablecolumn(row, array['Q3_5_TEXT'], array['Q3_5_TEXT'], true,   "intitution")
+        var col14= newtablecolumn(row, array['Q6'], array['Q6'], true, "other")
+        var col15= newtablecolumn(row, dieaseList.join(', '), dieaseList.join(', '), true, "dieases")
+        var col16= newtablecolumn(row, expertiseList.join(', '), expertiseList.join(', '), true, "expertise")
+        var col17= newtablecolumn(row, resourceList.join(', '), resourceList.join(', '), true, "resources")
 
         dataset.push({
           "name":displayname,
