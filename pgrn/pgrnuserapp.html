@@ -387,6 +387,31 @@ var fromfirebase=[]
 // });
 
 var approvedfb={fromfirebase}
+function histogram(array, key){
+  var histogram={}
+  for (var i = 0; i < array.length; i++) {
+    currentkey= array[i][key]
+    current= histogram[currentkey]
+    if (currentkey=="USA "){
+      console.log(array[i]);
+    }
+    if (array[i]['status']=='approved') {
+
+
+    if (histogram.hasOwnProperty(currentkey)){
+      histogram[currentkey]=current+1
+
+    }
+    else{
+      histogram[currentkey]=1
+    }
+  }
+    ;
+
+  }
+  return histogram
+}
+
 
 userresponse.once("value", function(snapshot) {
   // The callback function will get called twice, once for "fred" and once for "barney"
