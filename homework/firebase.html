@@ -86,14 +86,14 @@ firebase.on('child_added', function (snapshot) {
 function sendmessage(event){
   event.preventDefault()
 //  console.log(message);
-  if (!(localusername)){
+    if (!(localusername)){
       localusername=prompt("what is your username");
       localStorage.setItem("username", localusername)
-    };
-  firebase.push({
-      username: localusername,
-      messageBody: document.querySelector('#new-message').value,
-      createdAt: (new Date().getTime())
+      };
+      firebase.push({
+        username: localusername,
+        messageBody: document.querySelector('#new-message').value,
+        createdAt: (new Date().getTime())
     })
 sendbutton.reset();
   }
