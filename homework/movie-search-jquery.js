@@ -22,12 +22,11 @@ function formSubmitted(event) {
 var movielist= document.querySelector('#movies')
 
 function resultsReceived(results) {
-
- var addedmovies= $('.movie');
- for (var i = 0; i < addedmovies.length; i++) {
-   movielist.removeChild(addedmovies[i]);
- }
- if (results['Search']) {
+  var addedmovies= $('.movie');
+  for (var i = 0; i < addedmovies.length; i++) {
+    movielist.removeChild(addedmovies[i]);
+    }
+  if (results['Search']) {
 
   for (var i = 0; i < results['Search'].length; i++) {
     var movie=results["Search"][i];
@@ -55,3 +54,4 @@ function createMovie(movietitle, id, date) {
   // Access the first movie title
   // results["Search"][0]["Poster"]
 };
+console.log();
