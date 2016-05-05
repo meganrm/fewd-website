@@ -11,10 +11,11 @@
   stroke: #999;
   stroke-opacity: .6;
 }
+
 .info{
   margin: auto;
   width: 200px;
-  position: absolute;;
+  position: absolute;
   right:20px;
   top:340px;
   text-align: right;
@@ -24,16 +25,22 @@
 .displaylink{
   text-align: center;
   height: 60px;
+  margin-left: none;
 }
+
 .title-authors{
   list-style: none
 }
 .viz{
 }
 
-.title{
-  font-size: 1.3em;
+.project-title{
+  font-size: 20px;
 }
+.legend{
+  float: right;
+}
+
 .projects{
   background-color: rgb(60,83,97);
   color: white;
@@ -52,6 +59,14 @@
   <h2 class='projecttitle'>PGRN-RIKEN Projects</h2>
   <div class="displaylink">
     <ul class= 'title-authors'>
+      <li>
+      Click on a circle to see the name of the project.
+      </li>
+      <li>
+      The size of the circle corresponds to the approximate number of samples in each study. </li>
+      <li>
+      The lines between the circles represent shared PIs.
+    </li>
 
     </ul>
   </div>
@@ -67,8 +82,7 @@
   <div class="info">
     <p>
 
-    The size of the circle corresponds to the approximate number of samples in each study. The lines between the circles represent shared PIs.
-    Click on a circle to see the name of the project.
+
   </p>
 
   </div>
@@ -219,12 +233,14 @@ function runViz(projects){
   force.start();
 
   svg.selectAll("circle.node").on("click", function(d){
-            $('li').remove()
+            $('.project-title').remove();
+            $('.project-pis').remove()
+            $('.displaylink li').remove();
              var element= d3.select(this)
              var titles= element.text().split(':')
 
-             var titletext =  newlistitem('.title-authors', titles[0], 'title')
-             var authtext = newlistitem('.title-authors', titles[1], 'authors' )
+             var titletext =  newlistitem('.title-authors', titles[0], 'project-title')
+             var authtext = newlistitem('.title-authors', titles[1], 'project-pis' )
 
 //           anchor.attr('href', element.attr('href')).attr('target', 'blank')
               //   .attr('r', 25)
@@ -234,7 +250,21 @@ function runViz(projects){
     resize();
     d3.select(window).on("resize", resize);
     function resize() {
-          width = window.innerWidth-80 //, height = window.innerHeight-200;
+          width = window.innerWidth-60;
+          height = window.innerHeight-180;
+
+          if (width<670) {
+            leg = d3.selectAll('text')
+            leg.attr("y", height -200)
+            leg = d3.selectAll('rect')
+            leg.attr("y", height -200)
+          }
+          else{
+            leg = d3.selectAll('text')
+            leg.attr("y", height -480)
+            leg = d3.selectAll('rect')
+            leg.attr("y", height -480)
+          }
           svg.attr("width", width).attr("height", height);
           force.size([width, height]).resume();
           leg = d3.selectAll('text')

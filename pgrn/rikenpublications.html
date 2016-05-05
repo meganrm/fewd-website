@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.hide{
+  display: none;
+}
+
+#titles{
+  width: 80%;
+  height: 200px;
+  margin: auto;
+  display: block;
+  position: relative;
+
+}
+
+.pub{
+  list-style: none;
+  border: 2px solid #ccc;
+  display: inline-block;
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left:-50%;
+  opacity: 0;
+  padding: 20px;
+
+}
+.author{
+}
+.journal{
+
+}
+</style>
+<body>
+<div class="publications">
+  <ul id= 'titles'>
+  </ul>
+</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="rikenpublications.js"></script>
+<script type="text/javascript">
+
+for (var i = 0; i < publications.length; i++) {
+  var li= newlistitem('#titles', '', 'pub');
+  var ti= newTagjQuery('h4', li, publications[i].title, 'title')
+  var authors= newTagjQuery('span', li, ' '+publications[i].authors, 'author');
+  var journal= newTagjQuery('i', li, ' '+publications[i].journal, 'author');
+  var date= newTagjQuery('span', li, ' '+publications[i].date, 'date');
+  if (publications[i].PMID){
+    var lipid= newlistitem(li, 'PMID: ', 'PMID-text');
+    var pid= newTagjQuery('a', lipid, ' '+publications[i].PMID, 'PMID');
+    pid.attr('href', 'http://www.ncbi.nlm.nih.gov/pubmed/'+publications[i].PMID)
+  }
+  if (publications[i].PMCID){
+    var lipmcid= newlistitem(li, 'PMCID: ', 'PMID-text');
+    var pmcid= newTagjQuery('a', lipmcid, ' '+publications[i].PMCID, 'PMCID');
+    pmcid.attr('href', 'http://www.ncbi.nlm.nih.gov/pmc/articles/PMC30207/'+publications[i].PMCID)
+  }
+
+}
+animateli() ;
+
+function newTagjQuery(tagType, parent, text, newclass){
+  var elementName=$('<'+tagType+'>');
+  elementName.appendTo(parent).text(text).addClass(newclass);
+  return elementName;
+};
+
+function newlistitem(listid, text, newclass, id) {
+  var li= newTagjQuery('li', listid, text, newclass);
+  li.attr('id', id);
+  return li;
+};
+
+function animateli() {
+  var j = 0;
+  var delay = 1000; //millisecond delay between cycles
+  function cycleThru(){
+          if (!$('#titles').hasClass('hide')) {
+
+          var jmax = $("#titles .pub").length -1;
+          $("#titles .pub:eq(" + j + ")")
+                  .animate({opacity : 1, left: '20%'} ,400)
+                  .animate({opacity : 1, left: '20%'}, delay)
+                  .animate({opacity : 0, left:'80%'}, 400, function(){
+                          (j == jmax) ? j=0 : j++;
+                          $("#titles .pub:eq(" + j + ")").animate({ left: '-50%'} ,400)
+                          cycleThru();
+                  });
+          }
+          };
+
+  cycleThru();
+
+                   };
+
+
+
+</script>
