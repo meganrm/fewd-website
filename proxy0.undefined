@@ -1,7 +1,7 @@
-$.get("http://proxy.avandamiri.com/get?url=" + escape("http://api.elsevier.com/content/search/scopus?query=kinases&start=25&apiKey=90fdd364d32fd8c87a35004ffa0d0fcf"), function() { })
+$.get("http://proxy.avandamiri.com/get?url=" + escape("http://api.elsevier.com/content/search/scopus?query=kinases&apiKey=90fdd364d32fd8c87a35004ffa0d0fcf"), function() { })
 
 
-$.get("http://proxy.avandamiri.com/get?url=" + escape("http://api.elsevier.com:80/content/search/scopus?query=riel-mehan&apiKey=90fdd364d32fd8c87a35004ffa0d0fcf"), function() { })
+$.get("http://proxy.avandamiri.com/get?url=" + escape("http://api.elsevier.com:80/content/search/scopus?query=riel-mehan&count=200&apiKey=90fdd364d32fd8c87a35004ffa0d0fcf"), function() { })
 
 
 $.get("http://proxy.avandamiri.com/get?url=" + escape("https://ucsf.co1.qualtrics.com/jfe/form/SV_25mfZHZDq8VQTU9/?SID"), function() { })
@@ -19,10 +19,5 @@ http://api.elsevier.com/content/abstract/citations?doi=10.1016/j.redox.2015.09.0
 
 $.get("http://proxy.avandamiri.com/get?url=" + escape("http://api.elsevier.com/content/abstract/citations?doi=10.1016/j.redox.2015.09.040&apiKey=90fdd364d32fd8c87a35004ffa0d0fcf"), function() { })
 
-$.get("http://proxy.avandamiri.com/get?url=" + escape("http://api.elsevier.com/content/search/scopus?query=kinases&apiKey=90fdd364d32fd8c87a35004ffa0d0fcf"), function() { })
 
 $.get("http://proxy.avandamiri.com/get?url=" + escape("http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=science[journal]+AND+breast+cancer+AND+2008[pdat]), function() { })
-
-paper retreiveal
-
-$.get("http://proxy.avandamiri.com/get?url=" + escape("http://api.elsevier.com:80/content/article/doi/10.1016/S0014-5793(01)03313-0?apiKey=6492f9c867ddf3e84baa10b5971e3e3d"), function() { })
