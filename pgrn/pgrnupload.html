@@ -22,12 +22,16 @@
       padding: 1em;
       box-shadow: inset 0 0 2px #ccc;
     }
-    .fb-button{
-      display: block;
-      margin: 20px;
-    }
+
+
     .hide{
       display: none;
+    }
+
+    form{
+      margin-top:20px;
+      margin-bottom:20px;
+
     }
     #save-form{
       width: 100%;
@@ -46,17 +50,31 @@
 
   </head>
   <body>
-    <form id="sign-in">
+
+    <form id="sign-in"><h4>Sign-In</h4>
       <input type="text" id="username" value="" placeholder="email">
       <input type="password" id="password" value="" placeholder="password">
       <button type="submit" id='signin' class ='button'>Sign In</button>
-
     </form>
+
+    <h4>Upload new data</h4>
     <input type="file" id="upload" value="">
 
     <button type="button" name="button" class ='view-button'>View</button>
 
-    <button type="button" name="button" class ='fb-button'>View Firebase</button>
+
+
+    <form id="view-form" >  <h4>Search and View Database</h4>
+      <p>
+        To see a subset of the data chose a column title and enter search text. If search text is blank, clicking "View Firebase" will show the whole database.
+      </p>
+      <select id="myselect">
+
+      </select>
+
+      <input type="text" id='search-for'  placeholder="search text" value="">
+      <button type="submit" class ='fb-button'>View Firebase</button>
+    </form>
 
     <form id="save-form" >
       <button type="submit" id="save">Save</button>
@@ -139,7 +157,7 @@ view.addEventListener("click", maketable);
 var reader = new FileReader();
 $("#save-form").submit(formsaved);
 $("#sign-in").submit(signin);
-$(".fb-button").click(viewfb);
+$("#view-form").submit(viewfb);
 
 
 
@@ -208,6 +226,11 @@ function handleFiles(event) {
 
 var columns = ["status","firstname","lastname", 'fullname', "email","phone", "address", "state", "country", "title", "statement", "intitution",'display_intitution', "other", "dieases",  "expertise", "resources"]
 
+var dropdown= $("#myselect")
+for (var i = 0; i < columns.length; i++) {
+  var option= newTagjQuery('option', dropdown, columns[i], 'column-dropdown')
+}
+
 function countcolumns() {
   totalcolumns=[]
   for (var i = 0; i < columns.length; i++) {
@@ -235,11 +258,11 @@ function formsaved(event){
 
   for (var i = 1; i < rows.length; i++) {
     cells= rows[i].children;
-    var name= cells[2].textContent.trim()+cells[1].textContent.trim();
+    var name= $(cells[2]).text().trim()+$(cells[1]).text().trim();
     if (!name){
       continue
     }
-    $(cells[3]).text($(cells[2]).text()+', '+$(cells[1]).text())
+    $(cells[3]).text($(cells[2]).text().trim()+', '+$(cells[1]).text())
     name.trim()
     name.replace(/,/g, '')
     var id = name.split('.').join('');
@@ -260,8 +283,8 @@ function formsaved(event){
            var colnumber=parseInt(indexes[k])
            var colname= columns[colnumber]
            if (colname=='other') {
-             var text = cells[colnumber].textContent
-             textlist=text.split(';');
+             var newtext = $(cells[colnumber]).text()
+             textlist=newtext.split(';');
              newdata2={}
              for (var j = 0; j < textlist.length; j++) {
                websitelist=textlist[j].split('=')
@@ -276,9 +299,9 @@ function formsaved(event){
              }
              console.log(newdata2);
            }
-           var text = cells[colnumber].textContent
+           var newtext = $(cells[colnumber]).text().trim()
            newdata = {}
-           newdata[colname]=text
+           newdata[colname]=newtext
            person.update(newdata, onComplete)
            }
 
@@ -297,10 +320,25 @@ function updateselect(person, cells){
 function viewfb(){
   event.preventDefault()
   $('.emptyrow').remove()
-  for (var i = 0; i < fromfirebase.length; i++) {
+  $('.fromfirebase').remove()
+  var toview=[];
+
+  if ($('#search-for').val()){
+    var lookupkey = $( "#myselect option:selected" ).text();
+    for (var i = 0; i < fromfirebase.length; i++) {
+      if (fromfirebase[i][lookupkey]==$('#search-for').val()){
+
+        toview.push(fromfirebase[i])
+      }
+  }
+}
+  else{
+    toview=fromfirebase
+  }
+  for (var i = 0; i < toview.length; i++) {
     var row= newtablerow('#for-approval', 'fromfirebase')
     for (var k = 0; k < columns.length; k++) {
-          newtablecolumn(row, fromfirebase[i][columns[k]], fromfirebase[i][columns[k]], true, 'fromfirebase')
+          newtablecolumn(row, toview[i][columns[k]], toview[i][columns[k]], true, 'fromfirebase')
     }
 
   }
@@ -323,7 +361,6 @@ function viewfb(){
       // }
 //     console.log(results);
 
-var fromfirebase=[]
 
 // userresponse.once("value", function(snapshot) {
 //   // The callback function will get called twice, once for "fred" and once for "barney"
@@ -346,6 +383,7 @@ var fromfirebase=[]
 // });
 
 var approvedfb={fromfirebase}
+var fromfirebase=[]
 
 userresponse.once("value", function(snapshot) {
   // The callback function will get called twice, once for "fred" and once for "barney"
@@ -356,9 +394,9 @@ userresponse.once("value", function(snapshot) {
     var childData = childSnapshot.val();
 
 
-    if (childSnapshot.child('status').val()=='approved'){
+//    if (childSnapshot.child('status').val()=='approved'){
       fromfirebase.push(childData)
-    }
+//    }
   })
   });
 
