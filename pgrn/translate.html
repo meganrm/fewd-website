@@ -1,0 +1,24 @@
+<style media="screen">
+  .hide{
+    display: none;
+  }
+</style>
+
+
+<button type="button" name="button">Click to read in Japanese</button>
+<p class= "hide">
+  <プロジェクトについて>
+薬理遺伝学連合（PGRN）と理化学研究所（RIKEN）の連携研究（PGRN-RIKENコラボレーション）の目的は、詳細な表現型を有する薬理遺伝学研究サンプルと、ゲノムワイド関連解析や次世代シークエンサーによるシークエンス解析を共同研究を通じて実施することにより、薬理遺伝学における新たな発見を加速させていくことです。
+種々の薬剤の治療効果や薬剤副作用などの表現型を有する患者さんのDNAサンプルを所有するPGRNのメンバーは、PGRNとRIKENの連携研究に応募することが可能です。共同研究は、理化学研究所統合生命医科学研究センター(RIKEN Center for Integrative Medical Sciences (IMS))の研究者と共同で実施されます。採択された研究課題は、ゲノムワイド関連解析、あるいはシークエンス解析における遺伝子型測定が無料で実施されます。
+</p>
+
+<script type="text/javascript">
+  var translate=document.querySelector('button');
+  var paragraph= document.querySelector('p')
+  translate.addEventListener("click", display);
+  function display(event){
+    paragraph.classList.toggle('hide');
+    
+  }
+
+</script>
