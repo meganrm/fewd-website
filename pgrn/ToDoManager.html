@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+    </title>
+    <style media="screen">
+    button{
+      background-color: #D95B43;
+      color:white;
+      padding: 20px;
+      text-align: center;
+      text-decoration: none;
+      font-family: sans-serif;
+      font-size: 16px;
+      cursor: pointer;
+
+    }
+
+    button:hover{
+      background-color: #D5DED9;
+      color: #D95B43;
+
+    }
+      ul{
+        list-style: none;
+        padding-left: 0px;
+        margin-bottom: 80px;
+      }
+      body{
+        margin:0px;
+        color: #D5DED9;
+        font-family: sans-serif;
+      }
+    #new-to-do{
+      width: 30%;
+      background-color: gray;
+      position: fixed;
+      bottom: 0;
+      right :0;
+      padding: 20px;
+      z-index: 1;
+      font-size: 1.2em;
+    }
+    h2{
+      color:#D95B43;
+    }
+    .lists{
+
+      width: 70%;
+      text-align: center;
+    }
+    #sign-in{
+      text-align: center;
+      margin-top: 20px;
+      font-size: 2em;
+      vertical-align: top;
+    }
+    .hide{
+      display: none;
+    }
+      .holder{
+        display: inline-block;
+        width: 30%;
+        background-color: #D5DED9;
+        vertical-align: top;
+        box-sizing: border-box;
+        min-height: 900px;
+      }
+      li{
+        padding:20px;
+        border: solid white 1px;
+        margin: 20px;
+        text-align: left;
+      }
+      .short-term{
+        background-color: #99B2B7;
+      }
+      .long-term{
+        background-color: #7A6A53;
+      }
+      #signout{
+        left:50px;
+      }
+      #instructions{
+        height: 40px;
+        width: 320px;
+      }
+      #new-to-do label{
+        display: block;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="sign-in"><h4>Sign-In</h4>
+      <input type="text" id="username" value="" placeholder="email">
+      <input type="password" id="password" value="" placeholder="password">
+      <button type="submit" id='signin' class ='button'>Sign In</button>
+    </form>
+
+    <div class="lists hide">
+
+    <div class="holder to-do-holder">
+
+    <ul id='to-do'><h2>New items</h2>
+      <!-- <li id='key'><p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+
+        <span>Status:</span>
+        <select class="Status" id="status">
+          <option value="new">New</option>
+          <option value="progress">In Progress</option>
+          <option value="done">Done</option>
+
+        </select>
+
+    </li> -->
+    </ul>
+  </div>
+    <div class="holder progress-holder">
+
+    <ul id='progress'><h2>In Progress</h2>
+      <!-- <li>in progress to do</li> -->
+
+    </ul>
+  </div>
+<div class="holder done-holder">
+
+    <ul id='done'><h2>Finished tasks</h2>
+      <!-- <li>done to do </li> -->
+    </ul>
+  </div>
+</div>
+
+    <form id="new-to-do">
+      <label for="">What type of issue is this?
+      <select class="Type" id="type">
+        <option value="Report bug or error">Report bug or error</option>
+        <option value="Request to add content">Request to add content</option>
+        <option value="Suggest a change">Suggest a change</option>
+        <option value="General feedback">General feedback</option>
+      </select>
+    </label>
+    <label for="">Please describe the issue or request
+      <input id="instructions" type="text" name="name" value="" placeholder="instructions">
+    </label>
+
+      <label for="">What is the timeline for this to be done?
+      <select id="time-select">
+
+      </select>
+      </label>
+      <label for="">Do you want an email when finished?
+        <input type="checkbox" id='yestoemail' name="name" value="">      </label>
+
+      <button type="submit">Create new task</button>
+
+    </form>
+    <button type="button" id="signout">Sign Out</button>
+
+  </body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://f.cl.ly/items/2K2Z2g0L3v1q1I413j1O/strftime%20githubcomsamsonjsstrf.txt"></script>
+
+<script src="pgrnupload.js"></script>
+<script type="text/javascript" src='DOMfunctions.js'>
+
+</script>
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBlst7G0IP4MhuX77exGqPV7UobVHvswe4",
+    authDomain: "to-do-manager.firebaseapp.com",
+    databaseURL: "https://to-do-manager.firebaseio.com",
+    storageBucket: "to-do-manager.appspot.com",
+  };
+  var todoapp=firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  //User Functions
+var name, email, photoUrl, uid;
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      user = firebase.auth().currentUser;
+
+      name = user.displayName;
+      email = user.email;
+      photoUrl = user.photoURL;
+      uid = user.uid;
+      $('#sign-in').addClass('hide');
+      $('.lists').removeClass('hide');
+console.log('user is signed in'
+);    } else {
+    console.log('No user is signed in');
+    }
+  });
+
+$('#signout').on('click', signout);
+
+function signout(){
+  firebase.auth().signOut().then(function() {
+      console.log('Sign-out successful.')
+      $('#sign-in').toggleClass('hide');
+      $('.lists').toggleClass('hide');
+  }, function(error) {
+    // An error happened.
+  });
+}
+
+
+function updateuserProfile(updatename){
+  user = firebase.auth().currentUser;
+
+  user.updateProfile({
+    displayName: updatename,
+  }).then(function() {
+    // Update successful.
+  }, function(error) {
+    // An error happened.
+  });
+}
+
+
+
+
+
+
+
+var choices=['short-term', 'long-term']
+  var dropdown= $("#time-select")
+  for (var i = 0; i < choices.length; i++) {
+    var option= newTagjQuery('option', dropdown, choices[i], 'column-dropdown')
+  }
+
+$("#sign-in").submit(signin);
+
+$('#new-to-do').submit(getforminfo);
+$('#update').submit(updatetodo);
+
+function updatetodo() {
+
+}
+
+function getforminfo(event){
+  event.preventDefault()
+  var textbody=$('#instructions').val()
+  var timeline=$('#time-select').val();
+  var title=$('#type').val();
+  writeNewPost(uid, name, title, textbody, timeline)
+}
+
+
+function writeNewPost(uid, name, title, textbody, timeline) {
+  // A post entry.
+  if (name=='null')
+    name=prompt("What is your name?")
+    updateuserProfile(name)
+  var postData = {
+    author: name,
+    uid: uid,
+    email: email,
+    body: textbody,
+    timeline: timeline,
+    title: title,
+    status: 'new',
+    createdAt: (new Date().getTime()),
+    sendemail: $('#yestoemail').is(':checked')
+
+  };
+  // Get a key for a new Post.
+    var newPostKey = firebase.database().ref().child('posts').push().key;
+
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    updates['/posts/' + newPostKey] = postData;
+    updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+
+    return firebase.database().ref().update(updates);
+  }
+
+
+var posts = firebase.database().ref('/posts');
+posts.on('child_added', setMessage)
+posts.on('child_changed', setMessage)
+
+var statuses=['new', 'progress', 'done']
+var statuses_text=['New', 'In Progress', 'Done']
+
+function setMessage(snapshot) {
+  post=snapshot.val();
+  if (post['status']=='new'){
+    appendnewpost('#to-do', post, snapshot.key, 'new')
+  }
+  else if (post['status']=='progress') {
+    appendnewpost('#progress', post, snapshot.key, 'progress')
+  }
+  else{
+    appendnewpost('#done', post, snapshot.key, 'done')
+    if (post['sendemail']==true){
+      sendemail(post)
+    }
+  }
+
+  selections= $(".Status")
+  selections.on('change', function(event){
+          event.preventDefault();
+          closestli=$(this).closest('li')
+          if (this.value=='progress') {
+               closestli.remove()
+                updatepost(closestli.attr('id'), 'progress')
+    }
+
+        else if (this.value=='done')  {
+          closestli.remove()
+
+          updatepost(closestli.attr('id'), 'done')
+
+        }
+        else{
+          closestli.remove()
+          updatepost(closestli.attr('id'), 'new')
+
+        }
+
+      })
+
+}
+function sendemail(post){
+  console.log('email'+ post['email']);
+  var emaillink=$('<a>', {
+    href: "mailto:"+post['email']+'?subject=Task completed:'+post['title']
+  })
+  emaillink.appendTo('body');
+  emaillink.click();
+}
+
+
+function appendnewpost(listid, post, key, value){
+  var li= newlistitem(listid, post['title'], key, post['timeline']);
+  var posttext= newTagjQuery('p', li, post['body'], 'contents');
+  var submittedby=newTagjQuery('div', li, 'Submitted by: '+post['author']);
+  var createdAt = new Date(post['createdAt']);
+
+  var timstamp= newTagjQuery('div', li, "Submitted on: "+strftime('%a %l:%M %P', createdAt) )
+  var approve = $('<select>', {
+    class: 'Status'}
+    )
+  approve.appendTo(li);
+  for (var i = 0; i < statuses.length; i++) {
+    var option= $('<option>', {
+      value: statuses[i]}
+      )
+    option.text(statuses_text[i]).appendTo(approve)
+  }
+  approve.val(value)
+
+}
+
+function updatepost(postid, status){
+  firebase.database().ref('posts/' + postid).update({
+      status: status,
+      modifiedOn: (new Date().getTime())
+    });
+
+}
+
+function signin() {
+    event.preventDefault()
+    todoapp.auth().signInWithEmailAndPassword($("#username").val(), $("#password").val()).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+          var errorMessage = error.message;
+          // [START_EXCLUDE]
+          if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+          } else {
+            console.error(error);
+          }
+  // ...
+})
+
+  }
+
+
+</script>
