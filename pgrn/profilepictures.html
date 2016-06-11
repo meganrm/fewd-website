@@ -1,16 +1,195 @@
 <style media="screen">
-  
+figure{
+  display: block;
+}
+.content{
+  margin: auto;
+}
+.row {
+    float: left;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+.col-3{
+  box-sizing:border-box;
+  width: 20%;
+  float: left;
+  display: block;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+}
+.red-border-bottom:before {
+    position: absolute;
+    margin: auto;
+    z-index: 1;
+    content: "";
+    width: 75%;
+    height: 2px;
+    background: #e96656;
+    bottom: -9px;
+    left: 12.5%;
+}
+
+.profile-card{
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 35px;
+    vertical-align: baseline;
+    text-align: center;
+}
+
+.picture{
+  border-radius: 50%;
+  width: 174px;
+  height: 174px;
+  margin: auto;
+  overflow: hidden;
+  margin-bottom: 25px;
+
+}
+
+.profile-name h5{
+  text-transform: uppercase;
+    color: #404040;
+    font-weight: 700;
+    position: relative;
+    font-size: 17px;
+}
+
+.profile-name{
+display: inline-block;
+padding-bottom: 5px;
+min-height: 110px;
+}
+
+.profile-position {
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.picture img{
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+@media (max-width: 1024px) and (min-width: 768px){
+.picture {
+    width: 128px;
+    height: 128px;
+
+}
+}
+
+@media (max-width: 767px){
+.col-3{
+
+  float: none;
+  width: 100%;
+}}
+
 </style>
+<div class="content">
 
+<div class="row">
+
+
+<div class="col-3">
 <div class="profile-card">
-  <div class="picture">
-    <img src="" alt="" />
-
-  </div>
+  <figure class="picture">
+    <a href="mailto:JCFlorez@mgh.harvard.edu">
+    <img src="files/theme/images/florez_small.jpg" alt="" />
+    </a>
+  </figure>
   <div class="profile-name">
-
+      <h5 class='red-border-bottom'>Jose C. Florez MD PhD</h5>
+      <div class="profile-position">
+          Co-Principal Investigator
+      </div>
   </div>
-  <div class="profile-details">
 
+</div>
+</div>
+
+<div class="col-3">
+<div class="profile-card">
+  <figure class="picture">
+    <a href="mailto:Kathy.Giacomini@ucsf.edu">
+    <img src="files/theme/images/Kathy_Giacomini_small.jpg" alt="" />
+    </a>
+  </figure>
+  <div class="profile-name">
+<h5 class='red-border-bottom'>Kathy Giacomini PhD
+    </h5>
+      <div class="profile-position">
+        Co-Principal Investigator
+      </div>
   </div>
+
+</div>
+</div>
+
+
+<div class="col-3">
+<div class="profile-card">
+  <figure class="picture">
+    <a href="mailto:Monique.M.Hedderson@kp.org">
+    <img src="files/theme/images/Monique_Hedderson_small.jpg" alt="" />
+    </a>
+  </figure>
+  <div class="profile-name">
+<h5 class='red-border-bottom'>Monique M. Hedderson PhD
+
+ </h5>
+      <div class="profile-position">
+          Co-Principal Investigator
+      </div>
+  </div>
+
+</div>
+</div>
+
+
+<div class="col-3">
+<div class="profile-card">
+  <figure class="picture">
+    <a href="mailto:JWitte@ucsf.edu">
+    <img src="files/theme/images/jwittecopy.jpg" alt="" />
+    </a>
+  </figure>
+  <div class="profile-name">
+<h5 class='red-border-bottom'>John S. Witte PhD
+    </h5>
+      <div class="profile-position">
+          Co-Investigator
+      </div>
+  </div>
+</div>
+
+</div>
+
+<div class="col-3">
+<div class="profile-card">
+  <figure class="picture">
+    <a href="mailto:Sookwah.Yee@ucsf.edu">
+    <img src="files/theme/images/Sook_Wah_Yee_small.jpg" alt="" />
+    </a>
+  </figure>
+  <div class="profile-name">
+<h5 class='red-border-bottom'>Sook Wah Yee PhD
+    </h5>
+      <div class="profile-position">
+          Co-Investigator
+      </div>
+  </div>
+
+</div>
+</div>
+
+</div>
 </div>
