@@ -32,7 +32,9 @@
         margin:0px;
         color: #D5DED9;
         font-family: sans-serif;
+        text-align: center;
       }
+
     #new-to-do{
       width: 30%;
       background-color: gray;
@@ -47,19 +49,29 @@
       color:#D95B43;
     }
     .lists{
-
-      width: 70%;
+      color: white;
       text-align: center;
     }
-    #start{
+    .start{
       text-align: center;
       margin-top: 20px;
-      font-size: 2em;
       vertical-align: top;
+      background-color: #D5DED9;
+
     }
     .hide{
       display: none;
     }
+
+    .exsiting-boards{
+      color: #D95B43;
+    }
+
+    .exsiting-boards li{
+      color: #D95B43;
+      display:inline-block;
+    }
+
       .holder{
         display: inline-block;
         width: 30%;
@@ -103,7 +115,7 @@
       </form>
 
       <ul class='exsiting-boards'>
-
+        <h2>Click on one of your previously created boards</h2>
 
       </ul>
 
@@ -145,7 +157,6 @@
             <!-- <li>done to do </li> -->
           </ul>
         </div>
-      </div>
 
     <form id="new-to-do">
       <label for="">What type of issue is this?
@@ -162,6 +173,8 @@
 
       <label for="">What is the timeline for this to be done?
       <select id="time-select">
+        <option value="short-term">ASAP</option>
+        <option value="long-term">Long term goal</option>
 
       </select>
       </label>
@@ -172,6 +185,8 @@
       <button type="submit">Create new task</button>
 
     </form>
+  </div>
+
 
   </body>
 </html>
@@ -213,7 +228,7 @@ function createnewboard(){
   event.preventDefault()
   var username=document.querySelector('#username').value;
   console.log(username);
-  var boardname=document.querySelector('#username').value;
+  var boardname=document.querySelector('#boardname').value;
   var newBoard={
     'username':username,
     'posts':[]
@@ -249,7 +264,7 @@ function appendposts(post){
   timeline=post['timeline']
   time=post['time']
   var li= newli('#'+status, title, timeline, 'id'+time)
-
+  var discription= newTagText('p', '#id'+time, content)
   var submittedby=newTagText('div', '#id'+time, 'Submitted by: '+post['author']);
 
   var approve = document.createElement('select')
@@ -270,7 +285,7 @@ function makenewpost(){
   post={
     'title': document.querySelector('.Type').value,
     'author': 'megan',
-    'issue':document.querySelector('#discription').value,
+    'discription':document.querySelector('#discription').value,
     'timeline':document.querySelector('#time-select').value,
     'status':'new',
     'time': new Date().getTime()
