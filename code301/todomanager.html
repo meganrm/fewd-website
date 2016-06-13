@@ -102,9 +102,10 @@
         <button type="submit" id='newboard' class ='button'>Create New Board</button>
       </form>
 
-      <form id="form-oldboard">
-        <button type="submit" id='oldboard' class ='button'>View Exsiting Board</button>
-      </form>
+      <ul class='exsiting-boards'>
+
+
+      </ul>
 
     </div>
 
@@ -183,9 +184,30 @@ neweventlistener('#new-to-do', 'submit', makenewpost)
 
 var start=document.querySelector('.start');
 var lists=document.querySelector('.lists');
-
 var taskboards={}
 var currentboard
+readtaskboards()
+
+function readtaskboards(){
+  if (localStorage.getItem('taskboards')) {
+    var taskboardsstring = localStorage.getItem('taskboards');
+    taskboards = JSON.parse(taskboardsstring)
+    var boardkeys= Object.keys(taskboards)
+    for (var i = 0; i < boardkeys.length; i++) {
+      var li=newli('.exsiting-boards', boardkeys[i], 'exsiting-boards-lis', boardkeys[i])
+      neweventlistener('#'+boardkeys[i], 'click', changecurrentboard)
+
+    }
+  }
+}
+
+function changecurrentboard(){
+  currentboard=event.target.textContent
+  readposts(currentboard)
+}
+
+
+
 
 function createnewboard(){
   event.preventDefault()
@@ -194,27 +216,29 @@ function createnewboard(){
   var boardname=document.querySelector('#username').value;
   var newBoard={
     'username':username,
-    'posts':[],
+    'posts':[]
   }
   taskboards[boardname]=newBoard
   currentboard=boardname
-  console.log(newBoard);
+  // console.log(newBoard);
   localStorage.setItem('taskboards', JSON.stringify(taskboards))
-  start.classList.add('hide');
-  lists.classList.remove('hide');
+
+  readtaskboards();
   readposts(boardname)
 }
 
 
 function readposts(currentboard){
-  taskboardsstring = localStorage.getItem('taskboards');
-  taskboards = JSON.parse(taskboardsstring)
+  start.classList.add('hide');
+  lists.classList.remove('hide');
   board=taskboards[currentboard]
   posts = board['posts']
   for (var i = 0; i < posts.length; i++) {
     appendposts(posts[i])
   }
 }
+
+
 var statuses=['new', 'progress', 'done']
 var statuses_text=['New', 'In Progress', 'Done']
 
@@ -251,10 +275,17 @@ function makenewpost(){
     'status':'new',
     'time': new Date().getTime()
   }
+  taskboards[currentboard]['posts'].push(post);
+  writetaskboards()
   appendposts(post)
 
 }
 
+function writetaskboards() {
+  localStorage.setItem('taskboards', JSON.stringify(taskboards))
+
+
+}
 
 
 </script>
