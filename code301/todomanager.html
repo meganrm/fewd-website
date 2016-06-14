@@ -111,11 +111,11 @@
 
     .holder{
       display: inline-block;
-      width: 30%;
+      width: 33%;
       background-color: #D5DED9;
       vertical-align: top;
       box-sizing: border-box;
-      min-height: 900px;
+      min-height: 650px;
     }
 
 
@@ -194,7 +194,10 @@
             <!-- <li>done to do </li> -->
           </ul>
         </div>
+        <div class="go-back">
+          <button id='back-to-start' type="button" name="button">Back to start</button>
 
+        </div>
         <div class="new-to-do-window">
           <div class="hide-window">
           </div>
@@ -207,6 +210,7 @@
               <option value="General feedback">General feedback</option>
             </select>
           </label>
+
           <label for="">Please describe the issue or request
             <textarea id="discription" type="text" name="name" value="" placeholder="instructions"></textarea>
           </label>
@@ -240,6 +244,7 @@
 neweventlistener('#form-newboard', 'submit', createnewboard)
 neweventlistener('#new-to-do', 'submit', makenewpost)
 neweventlistener('.hide-window', 'click', toggleWindow)
+neweventlistener('#back-to-start', 'click', goback)
 
 // global varibles
 var start=document.querySelector('.start');
@@ -257,6 +262,9 @@ function toggleWindow(){
   todowindow.classList.toggle('closewindow')
 }
 
+function goback(){
+  location.reload();
+}
 
 //look for boards display names and adds event listeners
 function readtaskboards(){
