@@ -5,17 +5,39 @@
     <title>
     </title>
     <style media="screen">
+
+    body{
+      margin:0px;
+      color: #D5DED9;
+      font-family: sans-serif;
+    }
+
+    ul{
+        list-style: none;
+        padding-left: 0px;
+        margin-bottom: 80px;
+    }
+
+    h2{
+      color:#D95B43;
+    }
+
+    li{
+      padding:20px;
+      border: solid white 1px;
+      margin: 20px;
+      text-align: left;
+    }
+
     button{
       background-color: #D95B43;
       color:white;
       padding: 5px;
       text-align: center;
       text-decoration: none;
-      font-family: sans-serif;
       font-size: 16px;
       cursor: pointer;
       border: 2px white solid;
-
     }
 
     button:hover{
@@ -23,38 +45,29 @@
       color: #D95B43;
 
     }
-    ul{
-        list-style: none;
-        padding-left: 0px;
-        margin-bottom: 80px;
-      }
-      body{
-        margin:0px;
-        color: #D5DED9;
-        font-family: sans-serif;
-        text-align: center;
-      }
+
+    #form-newboard{
+      border-bottom: 1px white solid;
+      padding: 40px;
+    }
 
     #new-to-do{
-      width: 30%;
       background-color: gray;
       position: fixed;
-      bottom: 0;
+      bottom: 10%;
       right :0;
       padding: 20px;
       z-index: 1;
       font-size: 1.2em;
     }
-    h2{
-      color:#D95B43;
-    }
+
     .lists{
       color: white;
       text-align: center;
     }
+
     .start{
       text-align: center;
-      margin-top: 20px;
       vertical-align: top;
       background-color: #D5DED9;
 
@@ -63,40 +76,34 @@
       display: none;
     }
 
-    .exsiting-boards{
+    .existing-boards{
       color: #D95B43;
     }
 
-    .exsiting-boards li{
+    .existing-boards li{
       color: #D95B43;
       display:inline-block;
     }
 
-      .holder{
-        display: inline-block;
-        width: 30%;
-        background-color: #D5DED9;
-        vertical-align: top;
-        box-sizing: border-box;
-        min-height: 900px;
-      }
-      li{
-        padding:20px;
-        border: solid white 1px;
-        margin: 20px;
-        text-align: left;
-      }
-      .short-term{
-        background-color: #99B2B7;
-      }
-      .long-term{
-        background-color: #7A6A53;
-      }
-      #signout{
-        left:50px;
-      }
+    .holder{
+      display: inline-block;
+      width: 30%;
+      background-color: #D5DED9;
+      vertical-align: top;
+      box-sizing: border-box;
+      min-height: 900px;
+    }
+
+
+    .short-term{
+      background-color: #99B2B7;
+    }
+    .long-term{
+      background-color: #7A6A53;
+    }
+
       #instructions{
-        height: 40px;
+        height: 60px;
         width: 320px;
       }
       #new-to-do label{
@@ -108,14 +115,14 @@
   <body>
     <div class="start">
 
-      <form id="form-newboard"><h4>Sign-In</h4>
+      <form id="form-newboard"><h2>Task Mananger</h2>
         <input type="text" id="username" value="" placeholder="Name">
         <input type="text" id="boardname" value="" placeholder="Taskboard">
         <button type="submit" id='newboard' class ='button'>Create New Board</button>
       </form>
 
-      <ul class='exsiting-boards'>
-        <h2>Click on one of your previously created boards</h2>
+      <ul class='existing-boards'>
+        <h4>...or click on one of your previously created boards</h4>
 
       </ul>
 
@@ -197,11 +204,16 @@
 neweventlistener('#form-newboard', 'submit', createnewboard)
 neweventlistener('#new-to-do', 'submit', makenewpost)
 
+// global varibles
 var start=document.querySelector('.start');
 var lists=document.querySelector('.lists');
+var listofnew=document.querySelector('#new');
+var listofprogress=document.querySelector('#progress');
+var listofdone=document.querySelector('#done');
 var taskboards={}
 var currentboard
-readtaskboards()
+
+readtaskboards() //intialize by looking in localstorage for the already created boards
 
 function readtaskboards(){
   if (localStorage.getItem('taskboards')) {
@@ -209,21 +221,20 @@ function readtaskboards(){
     taskboards = JSON.parse(taskboardsstring)
     var boardkeys= Object.keys(taskboards)
     for (var i = 0; i < boardkeys.length; i++) {
-      var li=newli('.exsiting-boards', boardkeys[i], 'exsiting-boards-lis', boardkeys[i])
+      var li=newli('.existing-boards', boardkeys[i], 'existing-boards-lis', boardkeys[i])
       neweventlistener('#'+boardkeys[i], 'click', changecurrentboard)
 
     }
   }
 }
 
+
 function changecurrentboard(){
   currentboard=event.target.textContent
   readposts(currentboard)
 }
 
-
-
-
+//create an empty board and make it current
 function createnewboard(){
   event.preventDefault()
   var username=document.querySelector('#username').value;
@@ -242,7 +253,7 @@ function createnewboard(){
   readposts(boardname)
 }
 
-
+//read the posts in a board
 function readposts(currentboard){
   start.classList.add('hide');
   lists.classList.remove('hide');
@@ -250,6 +261,34 @@ function readposts(currentboard){
   posts = board['posts']
   for (var i = 0; i < posts.length; i++) {
     appendposts(posts[i])
+  }
+
+
+}
+
+function updatepost(){
+  event.preventDefault;
+  for (var i = 0; i < posts.length; i++) {
+    post=posts[i]
+    if ('id'+post['time']==this.parentElement.getAttribute('id') ) {
+      post['status']=this.value;
+      writetaskboards()
+    }
+
+
+  }
+
+
+  if (this.value=='progress') {
+    listofprogress.appendChild(this.parentElement)
+
+  }
+  else if (this.value=='done') {
+    listofdone.appendChild(this.parentElement)
+  }
+  else {
+    listofnew.appendChild(this.parentElement)
+
   }
 }
 
@@ -267,16 +306,17 @@ function appendposts(post){
   var discription= newTagText('p', '#id'+time, content)
   var submittedby=newTagText('div', '#id'+time, 'Submitted by: '+post['author']);
 
-  var approve = document.createElement('select')
-  approve.setAttribute('class', "Status")
-  li.appendChild(approve);
+  var currentstatus = document.createElement('select')
+  currentstatus.setAttribute('class', "Status")
+  li.appendChild(currentstatus);
   for (var i = 0; i < statuses.length; i++) {
     var option= document.createElement('option')
     option.setAttribute('value', statuses[i])
     option.textContent=statuses_text[i]
-    approve.appendChild(option)
+    currentstatus.appendChild(option)
   }
-  // approve.val(value)
+  currentstatus.addEventListener('change', updatepost)
+  currentstatus.value=status
 }
 
 function makenewpost(){
@@ -291,15 +331,13 @@ function makenewpost(){
     'time': new Date().getTime()
   }
   taskboards[currentboard]['posts'].push(post);
-  writetaskboards()
+  writetaskboards();
   appendposts(post)
 
 }
 
-function writetaskboards() {
+function writetaskboards(){
   localStorage.setItem('taskboards', JSON.stringify(taskboards))
-
-
 }
 
 
