@@ -51,14 +51,34 @@
       padding: 40px;
     }
 
-    #new-to-do{
+    .new-to-do-window{
       background-color: gray;
       position: fixed;
       bottom: 10%;
       right :0;
-      padding: 20px;
+      padding: 10px;
       z-index: 1;
-      font-size: 1.2em;
+      box-shadow: 1px 2px 15px gray;
+    }
+    .hide-window {
+      float: left;
+      display: block;
+      margin-top: 30px;
+      width: 0;
+      height: 0;
+      border: 70px solid green;
+      border-top-color:   transparent;
+      border-left-color:  transparent ;
+      border-right-color:  white ;
+      border-bottom-color: transparent;
+      border-left-width: 0px;
+      border-right-width: 30px;
+    }
+
+    #new-to-do{
+      text-align: right;
+      font-size: .8em;
+      float: right;
     }
 
     .lists{
@@ -102,14 +122,20 @@
       background-color: #7A6A53;
     }
 
-      #instructions{
-        height: 60px;
-        width: 320px;
-      }
-      #new-to-do label{
-        display: block;
-        margin: 20px;
-      }
+    .closewindow{
+      right :-380px;
+
+    }
+
+    #instructions{
+      height: 60px;
+      width: 320px;
+    }
+
+    #new-to-do label{
+      display: block;
+      margin: 20px;
+    }
     </style>
   </head>
   <body>
@@ -165,33 +191,38 @@
           </ul>
         </div>
 
-    <form id="new-to-do">
-      <label for="">What type of issue is this?
-      <select class="Type" id="type">
-        <option value="Report bug or error">Report bug or error</option>
-        <option value="Request to add content">Request to add content</option>
-        <option value="Suggest a change">Suggest a change</option>
-        <option value="General feedback">General feedback</option>
-      </select>
-    </label>
-    <label for="">Please describe the issue or request
-      <input id="discription" type="text" name="name" value="" placeholder="instructions">
-    </label>
+        <div class="new-to-do-window">
+          <div class="hide-window">
+          </div>
+          <form id="new-to-do">
+            <label for="">What type of issue is this?
+            <select class="Type" id="type">
+              <option value="Report bug or error">Report bug or error</option>
+              <option value="Request to add content">Request to add content</option>
+              <option value="Suggest a change">Suggest a change</option>
+              <option value="General feedback">General feedback</option>
+            </select>
+          </label>
+          <label for="">Please describe the issue or request
+            <input id="discription" type="text" name="name" value="" placeholder="instructions">
+          </label>
 
-      <label for="">What is the timeline for this to be done?
-      <select id="time-select">
-        <option value="short-term">ASAP</option>
-        <option value="long-term">Long term goal</option>
+            <label for="">What is the timeline for this to be done?
+            <select id="time-select">
+              <option value="short-term">ASAP</option>
+              <option value="long-term">Long term goal</option>
 
-      </select>
-      </label>
+            </select>
+            </label>
 
-      <label for="">Do you want an email when finished?
-        <input type="checkbox" id='yestoemail' name="name" value="">      </label>
+            <label for="">Do you want an email when finished?
+              <input type="checkbox" id='yestoemail' name="name" value="">      </label>
 
-      <button type="submit">Create new task</button>
+            <button type="submit">Create new task</button>
 
-    </form>
+          </form>
+        </div>
+
   </div>
 
 
@@ -201,8 +232,10 @@
 <script type="text/javascript" src='Vanilla_DOMfunctions.js'></script>
 <script type="text/javascript">
 
+//event listeners
 neweventlistener('#form-newboard', 'submit', createnewboard)
 neweventlistener('#new-to-do', 'submit', makenewpost)
+neweventlistener('.hide-window', 'click', toggleWindow)
 
 // global varibles
 var start=document.querySelector('.start');
@@ -210,10 +243,15 @@ var lists=document.querySelector('.lists');
 var listofnew=document.querySelector('#new');
 var listofprogress=document.querySelector('#progress');
 var listofdone=document.querySelector('#done');
+var todowindow=document.querySelector('.new-to-do-window');
 var taskboards={}
 var currentboard
 
 readtaskboards() //intialize by looking in localstorage for the already created boards
+
+function toggleWindow(){
+  todowindow.classList.toggle('closewindow')
+}
 
 function readtaskboards(){
   if (localStorage.getItem('taskboards')) {
