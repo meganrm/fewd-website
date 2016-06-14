@@ -74,6 +74,10 @@
       border-left-width: 0px;
       border-right-width: 30px;
     }
+    .hide-window:hover{
+      border-right-color:  #D95B43 ;
+
+    }
 
     #new-to-do{
       text-align: right;
@@ -127,9 +131,9 @@
 
     }
 
-    #instructions{
-      height: 60px;
-      width: 320px;
+    #discription{
+      height:50px;
+      vertical-align: top;
     }
 
     #new-to-do label{
@@ -204,7 +208,7 @@
             </select>
           </label>
           <label for="">Please describe the issue or request
-            <input id="discription" type="text" name="name" value="" placeholder="instructions">
+            <textarea id="discription" type="text" name="name" value="" placeholder="instructions"></textarea>
           </label>
 
             <label for="">What is the timeline for this to be done?
@@ -318,14 +322,9 @@ function updatepost(){
       post['status']=this.value;
       writetaskboards()
     }
-
-
   }
-
-
   if (this.value=='progress') {
     listofprogress.appendChild(this.parentElement)
-
   }
   else if (this.value=='done') {
     listofdone.appendChild(this.parentElement)
@@ -374,6 +373,7 @@ function makenewpost(){
     'status':'new',
     'time': new Date().getTime()
   }
+  document.querySelector('#discription').value = "";
   taskboards[currentboard]['posts'].push(post);
   writetaskboards();
   appendposts(post)
