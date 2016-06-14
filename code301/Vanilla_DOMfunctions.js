@@ -1,3 +1,5 @@
+//functions for manipulating the DOM
+
 var body = document.querySelector("body");
 
 
