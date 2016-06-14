@@ -253,31 +253,37 @@ function toggleWindow(){
   todowindow.classList.toggle('closewindow')
 }
 
+
+//look for boards display names and adds event listeners
 function readtaskboards(){
   if (localStorage.getItem('taskboards')) {
     var taskboardsstring = localStorage.getItem('taskboards');
     taskboards = JSON.parse(taskboardsstring)
     var boardkeys= Object.keys(taskboards)
     for (var i = 0; i < boardkeys.length; i++) {
-      var li=newli('.existing-boards', boardkeys[i], 'existing-boards-lis', boardkeys[i])
+      boardname= boardkeys[i].split('_').join(' ');
+      var li=newli('.existing-boards', boardname, 'existing-boards-lis', boardkeys[i])
       neweventlistener('#'+boardkeys[i], 'click', changecurrentboard)
 
     }
+  }
+  else{
+    console.log('no boards ');
   }
 }
 
 
 function changecurrentboard(){
-  currentboard=event.target.textContent
+  currentboard=event.target.textContent.split(' ').join('_')
   readposts(currentboard)
 }
 
 //create an empty board and make it current
 function createnewboard(){
   event.preventDefault()
-  var username=document.querySelector('#username').value;
+  var username=document.querySelector('#username').value.split(' ').join('_');
   console.log(username);
-  var boardname=document.querySelector('#boardname').value;
+  var boardname=document.querySelector('#boardname').value.split(' ').join('_');
   var newBoard={
     'username':username,
     'posts':[]
