@@ -2,170 +2,172 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Battlegrounds</title>
+    <title>Senate Battlegrounds</title>
+    <link rel="image_src" href="thumbnail.png" />
+
+    <style media="screen">
+    body{
+      font-family: sans-serif;
+      font-weight: lighter;
+      margin: 0;
+      background-color: #3B3737
+
+    }
+    h1{
+      text-align: center;
+      margin: 20px;
+      color: #F4EAD5;
+      font-size: 3em;
+      font-family: ' Helvetica', sans-serif;
+      font-weight: lighter;
+
+    }
+    h4{
+      color: #340A0B
+
+    }
+    .top{
+      width: 70%;
+      margin: auto;
+      text-align: center;
+    }
+    .top h2{
+      color: #C9D1D3;
+      font-family: ' Helvetica', sans-serif;
+      font-weight: lighter;
+
+
+    }
+    .content{
+      margin: auto;
+
+
+    }
+    .row{
+      float: left;
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+    }
+    .col{
+      box-sizing:border-box;
+      width: 20%;
+      float: left;
+      display: block;
+      min-height: 1px;
+      margin: auto;
+      padding: 10px;
+
+    }
+    .senator{
+      max-width: 250px;
+      margin: auto;
+      overflow: hidden;
+
+
+    }
+    .nra-color{
+
+      position: relative;
+      height: 240px;
+    }
+    ul{
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .picture{
+      border-radius: 50%;
+      width: 174px;
+      height: 174px;
+      margin: auto;
+      overflow: hidden;
+      margin-bottom: 25px;
+
+    }
+
+      .senator img{
+        position: relative;
+        left: 0;
+        width: 250px;
+        z-index:-1 ;
+        text-align: center;
+        width: 100%;
+
+      }
+      li{
+        margin-bottom: 10px;
+      }
+
+      .data{
+        display: inline;
+        position: absolute;
+        left: 0;
+        width:100%;
+        color: white;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+    a {
+      text-decoration: none;
+      color: white;
+
+    }
+    .senator a{
+      display: inline-block;
+      width: 80%;
+      text-align: center;
+      color: white;
+      border: #C6E5D9 3px solid;
+      padding: 3px;
+      position: absolute;
+      bottom:6px;
+      left: 5%;
+    }
+    a:hover{
+      background-color: #F4EAD5;
+      color: rgb(250,42,0);
+
+    }
+    span{
+      font-size: 12px;
+      font-family: sans-serif;
+      color:lightgray;
+    }
+    .hide{
+      display: none;
+    }
+    .citations{
+      font-size: 10px;
+      color:#F4EAD5;
+      width: 60%;
+      margin: auto;
+      text-align: center;
+    }
+
+    @media (max-width: 1024px) and (min-width: 900px){
+    .senator {
+        width: 180px;
+
+    }
+    }
+
+    @media (max-width: 900px){
+    .col{
+
+      float: none;
+      width: 100%;
+    }}
+
+
+    </style>
   </head>
   <body>
 
-  </body>
-</html>
-
-<style media="screen">
-body{
-  font-family: sans-serif;
-  font-weight: lighter;
-  margin: 0;
-  background-color: #3B3737
-
-}
-h1{
-  text-align: center;
-  margin: 20px;
-  color: #F4EAD5;
-  font-size: 3em;
-  font-family: ' Helvetica', sans-serif;
-  font-weight: lighter;
-
-}
-h4{
-  color: #340A0B
-
-}
-.top{
-  width: 70%;
-  margin: auto;
-  text-align: center;
-}
-.top h2{
-  color: #C9D1D3;
-  font-family: ' Helvetica', sans-serif;
-  font-weight: lighter;
 
 
-}
-.content{
-  margin: auto;
 
-
-}
-.row{
-  float: left;
-  width: 100%;
-  margin-right: 0;
-  margin-left: 0;
-}
-.col{
-  box-sizing:border-box;
-  width: 20%;
-  float: left;
-  display: block;
-  min-height: 1px;
-  margin: auto;
-  padding: 10px;
-
-}
-.senator{
-  max-width: 250px;
-  margin: auto;
-  overflow: hidden;
-
-
-}
-.nra-color{
-
-  position: relative;
-  height: 240px;
-}
-ul{
-  list-style: none;
-  padding-left: 0;
-}
-
-.picture{
-  border-radius: 50%;
-  width: 174px;
-  height: 174px;
-  margin: auto;
-  overflow: hidden;
-  margin-bottom: 25px;
-
-}
-
-  .senator img{
-    position: relative;
-    left: 0;
-    width: 250px;
-    z-index:-1 ;
-    text-align: center;
-    width: 100%;
-
-  }
-  li{
-    margin-bottom: 10px;
-  }
-
-  .data{
-    display: inline;
-    position: absolute;
-    left: 0;
-    width:100%;
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-a {
-  text-decoration: none;
-  color: white;
-
-}
-.senator a{
-  display: inline-block;
-  width: 80%;
-  text-align: center;
-  color: white;
-  border: #C6E5D9 3px solid;
-  padding: 3px;
-  position: absolute;
-  bottom:6px;
-  left: 5%;
-}
-a:hover{
-  background-color: #F4EAD5;
-  color: rgb(250,42,0);
-
-}
-span{
-  font-size: 12px;
-  font-family: sans-serif;
-  color:lightgray;
-}
-.hide{
-  display: none;
-}
-.citations{
-  font-size: 10px;
-  color:#F4EAD5;
-  width: 60%;
-  margin: auto;
-  text-align: center;
-}
-
-@media (max-width: 1024px) and (min-width: 900px){
-.senator {
-    width: 180px;
-
-}
-}
-
-@media (max-width: 900px){
-.col{
-
-  float: none;
-  width: 100%;
-}}
-
-
-</style>
 <section class='top'>
   <h1>Senators in tight races who voted NO on background checks </h1>
   <h2>And how to contribute to their opponents</h2>
@@ -417,7 +419,8 @@ span{
 </ul>
 
 </div>
-
+</body>
+</html>
 <!-- Crapo (R-ID)
 Hoeven (R-ND)
 Isakson (R-GA)
