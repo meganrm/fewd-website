@@ -1,0 +1,467 @@
+<html><head><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<style media="screen">
+.whole{
+  font-family: sans-serif;
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+
+}
+h2, h3{
+margin-top: auto;
+margin-bottom: auto;
+}
+
+.container:after {
+  position: relative;
+  background: #ffffff;
+  line-height: 10px;
+  content: '\25B2';
+  display: block;
+  text-align: center;
+  padding: 0;
+  /*z-index: 10;*/
+  -moz-transform: scale(4, 1) rotate(180deg);
+  -webkit-transform: scale(4, 1) rotate(180deg);
+  -o-transform: scale(4, 1) rotate(180deg);
+  -ms-transform: scale(4, 1) rotate(180deg);
+  transform: scale(2, 1) rotate(180deg);
+}
+
+.ipsc #divider:after {
+  color: rgb(83,67,102);
+
+}
+
+.step #divider {
+  overflow: hidden;
+}
+
+.image {
+  border-bottom: dotted 2px;
+}
+
+.purple #divider {
+  background:  rgb(83,67,102);
+}
+.number{
+  background:  rgb(83,67,102);
+  border-radius: 50%;
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  color: white;
+
+}
+
+.ipsc .number{
+
+}
+
+.divider{
+
+}
+.number h3{
+  text-align: center;
+  font-size: 1.75em;
+  margin-top: 3px;
+  margin-bottom: auto;
+
+}
+.number:hover{
+  background: white;
+}
+
+.text{
+  margin: 0 auto;
+  position: absolute;
+  z-index: 12;
+  top: -28px;
+  left: -28%;
+  background: white;
+}
+
+.text p{
+  margin-left: 40px;
+  font-size: 12px;
+  position: absolute;
+
+}
+
+.text .time{
+  margin-left: 0px;
+  position: absolute;
+ bottom:-321%;
+ background-color: white;
+ padding: 10px;
+}
+
+
+.text h2, .short-header-page #banner h2 {
+  font-size: 1.75em;
+  display: inline-block;
+  margin-bottom: 0;
+
+}
+
+.whole{
+  margin-left: 10%;
+}
+.step{
+  border-left: 3px solid;
+  max-width: 990px;
+}
+.container{
+  width: 80%;
+  position: relative;
+  margin-left: 20%;
+}
+
+.container2{
+  width: 80%;
+  position: relative;
+  margin-left: 20%;
+}
+
+.image img{
+width: 100%;
+margin-top: 30px;
+
+
+}
+
+.ipsc{
+  border-left-color:gray;
+  border-bottom-color:rgb(83,67,102);
+  color:gray;
+}
+.ipsc .image{
+  border-bottom-color:rgb(83,67,102);
+}
+
+.ipsc .number{
+    background-color: gray;
+}
+.ipsc .container:after {
+  color:rgb(83,67,102);
+
+}
+
+.design{
+  color:rgb(83,67,102);
+  border-left-color:rgb(83,67,102);
+
+}
+
+.design .image{
+  border-bottom-color:rgb(249, 64, 54);
+}
+.design .number{
+  background-color:rgb(83,67,102);
+}
+
+.design .container:after {
+  color:rgb(249, 64, 54);
+}
+
+.transfection{
+  color:rgb(249, 64, 54);
+  border-left-color:rgb(249, 64, 54);
+
+}
+.transfection .image{
+  border-bottom-color:rgb(39,76,191);
+}
+.transfection .number{
+  background-color:rgb(249, 64, 54);
+}
+
+.transfection .container:after {
+  color:rgb(39,76,191);
+
+}
+
+.facs{
+  color:rgb(39,76,191);
+  border-color:rgb(39,76,191);
+}
+.facs .image{
+  border-bottom-color:rgb(117,61,86);
+}
+.facs .number{
+  background-color:rgb(39,76,191);
+}
+
+.facs .container:after {
+  color:rgb(117,61,86);
+
+}
+
+.clone{
+  color:rgb(117,61,86);
+  border-color:rgb(117,61,86);
+}
+.clone .image{
+  border-bottom-color:rgb(143,0,103);
+}
+.clone .number{
+  background-color:rgb(117,61,86);
+}
+
+.clone .container:after {
+  color:rgb(143,0,103);
+}
+
+
+.qc{
+  color:rgb(143,0,103);
+  border-color:rgb(143,0,103);
+}
+.qc .image{
+  border-bottom-color:rgb(117,61,86);
+}
+.qc .number{
+  background-color:rgb(143,0,103);
+}
+
+.qc .container:after {
+  color:rgb(117,61,86);
+}
+
+
+.diff{
+  color:rgb(117,61,86);
+  border-color:rgb(117,61,86);
+}
+.diff .image{
+  border-bottom-color:rgb(39,76,191);
+}
+.diff .number{
+  background-color:rgb(117,61,86);
+}
+
+.diff .container:after {
+  color:rgb(117,61,86);
+}
+
+.live{
+  color:rgb(0,0,131);
+  border-color:rgb(0,0,131);
+}
+.live .image{
+  border-bottom-color:rgb(0,0,131);
+}
+.live .number{
+  background-color:rgb(0,0,131);
+}
+
+.live .container:after {
+  color:rgb(0,0,131);
+}
+
+</style>
+</head><body><div class="whole">
+
+
+
+<div class="step ipsc">
+  <div class="container">
+    <div class="text">
+      <div class="number">
+
+        <h3>1</h3>
+      </div>
+      <h2> iPSCs</h2>
+        <p>
+          Use an established<br>
+          hiPSC line - WTC
+        </p>
+    </div>
+    <div class="image">
+      <img src="images/GeneEditing_Full_TD_10_infographic_5-01_03.jpg" alt="">
+    </div>
+    <div class="divider" id="divider">
+
+    </div>
+</div>
+
+
+</div>
+
+
+<div class="step design">
+  <div class="container">
+    <div class="text">
+      <div class="number">
+
+        <h3>2</h3>
+      </div>
+      <h2> Design</h2>
+        <p class="time">
+      6-8 weeks
+        </p>
+    </div>
+    <div class="image">
+      <img src="images/GeneEditing_Full_TD_10_infographic_5-01_06.jpg" alt="">
+    </div>
+    <div class="divider" id="divider">
+
+    </div>
+</div>
+
+
+</div>
+
+
+<div class="step transfection">
+  <div class="container">
+    <div class="text">
+      <div class="number">
+
+        <h3>3</h3>
+      </div>
+      <h2> Transfection</h2>
+        <p>
+          Introduce the FP at <br>
+endogenous genomic locus      <br>
+of the gene of interest
+
+</p>
+<p class="time">
+  1-2 weeks
+</p>
+    </div>
+    <div class="image">
+      <img src="images/GeneEditing_Full_TD_10_infographic_5-01_08.jpg" alt="">
+    </div>
+    <div class="divider" id="divider">
+
+    </div>
+</div>
+
+
+</div>
+
+
+<div class="step facs">
+  <div class="container">
+    <div class="text">
+      <div class="number">
+
+        <h3>4</h3>
+      </div>
+      <h2> FACS entrichment</h2>
+        <p>
+          Preliminary screening<br>
+for only stem cells expressing GFP        </p>
+    </div>
+    <div class="image">
+      <img src="images/GeneEditing_Full_TD_10_infographic_5-01_10.jpg" alt="">
+    </div>
+    <div class="divider" id="divider">
+
+    </div>
+</div>
+</div>
+
+
+<div class="step clone">
+  <div class="container">
+    <div class="text">
+      <div class="number">
+
+        <h3>5</h3>
+      </div>
+      <h2> Clonal line generation</h2>
+        <p>
+          Create a stable cell line<br>
+expressing the FP       </p>
+    </div>
+    <div class="image">
+      <img src="images/GeneEditing_Full_TD_10_infographic_5-01_12.jpg" alt="">
+    </div>
+    <div class="divider" id="divider">
+
+    </div>
+</div>
+</div>
+
+
+<div class="step qc">
+  <div class="container">
+    <div class="text">
+      <div class="number">
+
+        <h3>6</h3>
+      </div>
+      <h2> QC</h2>
+        <p>
+          Many steps to check GFP<br>
+for only stem cells expressing GFP        </p>
+    </div>
+    <div class="image">
+      <img src="images/GeneEditing_Full_TD_10_infographic_5-01_14.jpg" alt="">
+    </div>
+    <div class="divider" id="divider">
+
+    </div>
+</div>
+</div>
+
+<div class="step diff">
+  <div class="container">
+    <div class="text">
+      <div class="number">
+
+        <h3>7</h3>
+      </div>
+      <h2> Differentiation</h2>
+        <p>
+          Preliminary screening<br>
+for only stem cells expressing GFP        </p>
+    </div>
+    <div class="image">
+      <img src="images/GeneEditing_Full_TD_10_infographic_5-01_16.jpg" alt="">
+    </div>
+    <div class="divider" id="divider">
+
+    </div>
+</div>
+</div>
+
+<div class="step live">
+  <div class="container2">
+    <div class="text">
+      <div class="number">
+
+        <h3>8</h3>
+      </div>
+      <h2> Live Cell Imaging</h2>
+        <p>
+          Image both the undifferentiated cell <br>
+          and the undifferentiated cells
+              </p>
+    </div>
+    <div class="">
+    </div>
+    <div class="divider" id="divider">
+
+    </div>
+</div>
+</div>
+
+
+</div>
+
+<script type="text/javascript">
+
+  $(".text").click(function(){
+    console.log('scroll');
+    $('html, body').animate({
+        scrollTop: $(this).parent().offset().top - 40
+    }, 'slow');
+  })
+
+</script>
+</body></html>
