@@ -8,12 +8,11 @@
 
 
 }
-h2, h3{
-margin-top: auto;
-margin-bottom: auto;
-}
 
-.container:after {
+.divider{
+
+}
+.divider:after {
   position: relative;
   background: #ffffff;
   line-height: 10px;
@@ -46,12 +45,14 @@ margin-bottom: auto;
   background:  rgb(83,67,102);
 }
 .number{
-  background:  rgb(83,67,102);
   border-radius: 50%;
+  border: 2px solid white;
   display: inline-block;
   height: 40px;
   width: 40px;
   color: white;
+  margin-top: 30px;;
+
 
 }
 
@@ -65,8 +66,8 @@ margin-bottom: auto;
 .number h3{
   text-align: center;
   font-size: 1.75em;
-  margin-top: 3px;
-  margin-bottom: auto;
+  margin-top: -14px !important;
+  padding: 20px;
 
 }
 .number:hover{
@@ -74,19 +75,15 @@ margin-bottom: auto;
 }
 
 .text{
+  text-align: center;
   margin: 0 auto;
-  position: absolute;
-  z-index: 12;
-  top: -28px;
-  left: -28%;
-  background: white;
+
+  color:white;
 }
 
 .text p{
   margin-left: 40px;
   font-size: 12px;
-  position: absolute;
-
 }
 
 .text .time{
@@ -102,7 +99,6 @@ margin-bottom: auto;
   font-size: 1.75em;
   display: inline-block;
   min-width: 160px;
-  margin-bottom: 0;
 
 }
 
@@ -114,9 +110,8 @@ margin-bottom: auto;
   max-width: 990px;
 }
 .container{
-  width: 80%;
+  width: 100%;
   position: relative;
-  margin-left: 20%;
 }
 
 .container2{
@@ -140,10 +135,10 @@ margin-top: 30px;
 .ipsc .image{
   border-bottom-color:rgb(83,67,102);
 }
-
-.ipsc .number{
+.ipsc .text{
     background-color: gray;
 }
+
 .ipsc .container:after {
   color:rgb(83,67,102);
 
@@ -268,23 +263,25 @@ margin-top: 30px;
 
 <div class="step ipsc">
   <div class="container">
+    <div class="divider" id="divider">
+
     <div class="text">
       <div class="number">
 
         <h3>1</h3>
       </div>
       <h2> iPSCs</h2>
+    </div>
+  </div>
+
         <p>
           Use an established<br>
           hiPSC line - WTC
         </p>
-    </div>
     <div class="image">
       <img src="images/GeneEditing_Full_TD_10_infographic_5-01_03.jpg" alt="">
     </div>
-    <div class="divider" id="divider">
 
-    </div>
 </div>
 
 
