@@ -1,12 +1,12 @@
-
+<!DOCTYPE html>
+<meta charset="utf-8">
 <style>
 
-.container {
+body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 960px;
   height: 500px;
   position: relative;
-  margin: auto;
 }
 
 #canvas {
@@ -45,12 +45,10 @@
 }
 
 </style>
-<div class="container">
 
 <div id="tooltip-container"></div>
 
 <div id="canvas-svg"></div>
-</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
@@ -58,20 +56,7 @@
 
 <script>
 
-var countryhist= [{"Country (or dependent territory)":"Australia",
-                    "Population":    1},
-              {"Country (or dependent territory)": "Canada", "Population":3},
-              {"Country (or dependent territory)": "Egypt", "Population":2},
-              {"Country (or dependent territory)": "Israel", "Population":2},
-              {"Country (or dependent territory)": "Japan", "Population":1},
-              {"Country (or dependent territory)": "Netherlands", "Population":2},
-              {"Country (or dependent territory)": "New Zealand", "Population":1},
-              {"Country (or dependent territory)": "Spain", "Population":1},
-              {"Country (or dependent territory)": "The Netherlands", "Population":3},
-              {"Country (or dependent territory)": "United States", "Population":132}
-]
-
-function viz(data) {
+d3.csv("population.csv", function(err, data) {
 
   var config = {"data0":"Country (or dependent territory)","data1":"Population",
               "label0":"label 0","label1":"label 1","color0":"#99ccff","color1":"#0050A1",
@@ -152,6 +137,7 @@ function viz(data) {
 
   var MAP_KEY = config.data0;
   var MAP_VALUE = config.data1;
+
   var projection = d3.geo.mercator()
       .scale((width + 1) / 2 / Math.PI)
       .translate([width / 2, height / 2])
@@ -179,8 +165,8 @@ function viz(data) {
 
   data.forEach(function(d) {
     valueHash[d[MAP_KEY]] = +d[MAP_VALUE];
+    debugger
   });
-
 
   var quantize = d3.scale.quantize()
       .domain([0, 1.0])
@@ -246,7 +232,7 @@ function viz(data) {
 
             if (d3.event.pageX < map_width / 2) {
               d3.select("#tooltip-container")
-                .style("top", (d3.event.layerY) + "px")
+                .style("top", (d3.event.layerY + 15) + "px")
                 .style("left", (d3.event.layerX + 15) + "px");
             } else {
               var tooltip_width = $("#tooltip-container").width();
@@ -269,7 +255,6 @@ function viz(data) {
   });
 
   d3.select(self.frameElement).style("height", (height * 2.3 / 3) + "px");
-};
+});
 
-viz(countryhist)
 </script>
