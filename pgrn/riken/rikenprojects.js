@@ -2,6 +2,13 @@
 var projects=
 {
   'nodes' :[
+{title:'Replication GWAS of Cisplatin-Induced Peripheral Neuropathy and Ototoxicity',
+samples: 492,
+pis: ['E. Dolan, T. Mushiroda'],
+group: 'Cancer'
+  },
+
+
 {title:'Pharmacogenomics of Aromatase Inhibitors',
  samples: 830,
  pis: ['J. Ingle, R. Weinshilboum, M. Kubo'],
@@ -13,6 +20,8 @@ samples: 352,
 pis: ['F. Innocenti, N. Cox, K. Owzar, H. Kindler, K.M. Giacomini, H. McLeod, M.J. Ratain, Y. Nakamura'],
 group: 'Cancer'
 },
+
+
 
 {title: 'Aromatase Inhibitors for Breast Cancer w/ MA-27',
 samples: 1688,
@@ -46,7 +55,7 @@ group: 'Cancer'
 
 {title: 'Busulfan-Based Chemotherapy and Acute Myelogenous Leukemia',
 samples: 328,
-pis: ['C. Andreadis, K.M. Giacomini, S. W. Yee, J. Witte, L. Johnston, S. Baker, M. Relling, M. Baer, D. Kroetz, K. Matsuda'],
+pis: ['C. Andreadis, K.M. Giacomini, S.W. Yee, J. Witte, L. Johnston, S. Baker, M. Relling, M. Baer, D. Kroetz, K. Matsuda'],
 group: 'Cancer'
 },
 
@@ -195,6 +204,13 @@ group: 'Inflammatory Disease'
 },
 
 // Neuropsychiatry Disease
+
+{title: 'Genomewide Meta-Analysis of Metformin Glycemic Response in Multi-Ethnic Cohorts',
+samples: 4500,
+pis: ['K.M. Giacomini, Y. Kamatani'],
+group: 'Neuropsychiatry Disease'
+},
+
 {title: 'Citalopram and Escitalopram for Depression',
  samples: 500,
 pis: ['D. Mrazek, C. Schaefer, D. Schaid, K.M. Giacomini, and R. Weinshilboum, T. Mushiroda'],
@@ -251,6 +267,12 @@ group: 'Pulmonary Disease'
 },
 
 // Rheumatology
+{title: 'Transethnic Genome-wide Analysis to Identify Genetic Determinants of Allopurinol Response'
+samples: 1920,
+pis: ['K.M. Giacomini, Y. Kamatani'],
+group: 'Rheumatology'
+},
+
 {title: 'Pharmacogenomics of Methotrexate Response in Patients with Rheumatoid Arthritis',
 samples: 1600,
 pis: ['T. Bongartz, Y. Kochi'],
