@@ -43,7 +43,7 @@ function readtaskboards(){
     }
   }
   else{
-    console.log('no boards ');
+    console.log('no boards');
   }
 }
 
@@ -57,8 +57,14 @@ function changecurrentboard(){
 function createnewboard(){
   event.preventDefault()
   var username=document.querySelector('#username').value.split(' ').join('_');
+  if (!username) {
+    username=prompt('Please enter your name')
+  }
   console.log(username);
   var boardname=document.querySelector('#boardname').value.split(' ').join('_');
+  if (!boardname) {
+    boardname=prompt('Please enter a name for your board')
+  }
   var newBoard={
     'username':username,
     'posts':[]
